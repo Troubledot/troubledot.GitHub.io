@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="原文链接 首先，问“这个问题(英文)”的人是个天才，他怎么会遇到这样的一个问题。 其次，回答这个问题的人更是一个天才，我难以想象他会回答这个问题，更难以想象的是，他的回答是如此的详细和丰富和完整，真正称得上诲人不倦。既然遇到了这个问题，我们不妨也跟着提高一下。这是一个Javascript 语言题目，一个完全有效的等式，不信自己可以试一下，下面看看高人的题解： 1++[[]][+[]]+[+[]]">
+<meta property="og:type" content="article">
+<meta property="og:title" content="javascript">
+<meta property="og:url" content="http://yoursite.com/2018/07/06/为什么 ++[[]][+[]]+[+[]] = 10？/index.html">
+<meta property="og:site_name" content="troubledot">
+<meta property="og:description" content="原文链接 首先，问“这个问题(英文)”的人是个天才，他怎么会遇到这样的一个问题。 其次，回答这个问题的人更是一个天才，我难以想象他会回答这个问题，更难以想象的是，他的回答是如此的详细和丰富和完整，真正称得上诲人不倦。既然遇到了这个问题，我们不妨也跟着提高一下。这是一个Javascript 语言题目，一个完全有效的等式，不信自己可以试一下，下面看看高人的题解： 1++[[]][+[]]+[+[]]">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-07-06T04:27:04.335Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="javascript">
+<meta name="twitter:description" content="原文链接 首先，问“这个问题(英文)”的人是个天才，他怎么会遇到这样的一个问题。 其次，回答这个问题的人更是一个天才，我难以想象他会回答这个问题，更难以想象的是，他的回答是如此的详细和丰富和完整，真正称得上诲人不倦。既然遇到了这个问题，我们不妨也跟着提高一下。这是一个Javascript 语言题目，一个完全有效的等式，不信自己可以试一下，下面看看高人的题解： 1++[[]][+[]]+[+[]]">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/logo.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/logo.png">
+          
+        
+    
+    <!-- title -->
+    <title>javascript</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Blog</a></li>
+         
+          <li><a href="https://github.com/Troubledot">Projects</a></li>
+         
+          <li><a href="/URL">LINK_NAME</a></li>
+         
+          <li><a href="/Search/">Search</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/2018/07/06/tampermonkey/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2018/07/06/为什么 ++[[]][+[]]+[+[]] = 10？/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2018/07/06/为什么 ++[[]][+[]]+[+[]] = 10？/&text=javascript"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2018/07/06/为什么 ++[[]][+[]]+[+[]] = 10？/&title=javascript"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2018/07/06/为什么 ++[[]][+[]]+[+[]] = 10？/&is_video=false&description=javascript"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=javascript&body=Check out this article: http://yoursite.com/2018/07/06/为什么 ++[[]][+[]]+[+[]] = 10？/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2018/07/06/为什么 ++[[]][+[]]+[+[]] = 10？/&title=javascript"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2018/07/06/为什么 ++[[]][+[]]+[+[]] = 10？/&title=javascript"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2018/07/06/为什么 ++[[]][+[]]+[+[]] = 10？/&title=javascript"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2018/07/06/为什么 ++[[]][+[]]+[+[]] = 10？/&title=javascript"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2018/07/06/为什么 ++[[]][+[]]+[+[]] = 10？/&name=javascript&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        javascript
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">troubledot</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2018-07-06T04:21:27.000Z" itemprop="datePublished">2018-07-06</time>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p><a href="http://justjavac.com/javascript/2012/05/24/can-you-explain-why-10.html" target="_blank" rel="noopener">原文链接</a></p>
+<p>首先，问“这个问题(英文)”的人是个天才，他怎么会遇到这样的一个问题。 其次，回答这个问题的人更是一个天才，我难以想象他会回答这个问题，更难以想象的是，他的回答是如此的详细和丰富和完整，真正称得上诲人不倦。<br>既然遇到了这个问题，我们不妨也跟着提高一下。<br>这是一个Javascript 语言题目，一个完全有效的等式，不信自己可以试一下，下面看看高人的题解：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">++[[]][+[]]+[+[]]</span><br></pre></td></tr></table></figure>
+<p>如果把这段表达式拆分开来，它相等于：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">++[[]][+[]]</span><br><span class="line">+</span><br><span class="line">[+[]]</span><br></pre></td></tr></table></figure>
+<p>在 JavaScript 里，+[] === 0 是完全正确的。 + 会把一些字符转化成数字，在这里，这个式子会变成 +”” 或 0。<br>因此，我们可以简化一下(++ 比 + 有更高的优先级)：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">++[[]][<span class="number">0</span>]</span><br><span class="line">+</span><br><span class="line">[<span class="number">0</span>]</span><br></pre></td></tr></table></figure>
+<p>因为 [[]][0] 的意思是：获取 [[]] 的第一个元素，这就得出了下面的结果：</p>
+<p>[[]][0] 返回内部数组 ([])。根据语言规范，我们说 [[]][0] === [] 是不正确的，但让我们把这个内部数组称作 A，以避免错误的写法。<br>++[[]][0] == A + 1， 因为 ++ 的意思是”加一”。<br>++[[]][0] === +(A + 1)；换句话说，你得到的永远是个数值( +1 并不一定得到的是个数值，但 ++ 一定是)。<br>同样，我们可以把这一堆代码简化的更清晰。让我们把 A 换回成 [] :</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">+([] + <span class="number">1</span>)</span><br><span class="line">+</span><br><span class="line">[<span class="number">0</span>]</span><br></pre></td></tr></table></figure>
+<p>在 JavaScript 里，这也是正确的：[] + 1 === “1”，因为 [] == “” (这相当于一个空的数组的内部元素连接)，于是：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">+([] + <span class="number">1</span>) === +(<span class="string">"” + 1)，并且 </span></span><br><span class="line"><span class="string">+("</span>” + <span class="number">1</span>) === +(<span class="string">"1"</span>)，并且 </span><br><span class="line">+(<span class="string">"1"</span>) === <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p>让我们再次简化一下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span></span><br><span class="line">+</span><br><span class="line">[<span class="number">0</span>]</span><br></pre></td></tr></table></figure>
+<p>同样，在 Javascript 里，这是正确的：[0] == “0”，因为这是相当于一个有一个元素的数组的内部元素的连接。 各元素会使用，分隔。 当只有一个元素时，你可以推论出这个过程的结果就是它自身的第一个元素。<br>所以，最终我们得到 (数字 + 字符串 = 字符串)：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span></span><br><span class="line">+</span><br><span class="line"><span class="string">"0"</span></span><br><span class="line">=== <span class="string">"10"</span> <span class="comment">// 耶！</span></span><br></pre></td></tr></table></figure>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Blog</a></li>
+         
+          <li><a href="https://github.com/Troubledot">Projects</a></li>
+         
+          <li><a href="/URL">LINK_NAME</a></li>
+         
+          <li><a href="/Search/">Search</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2018/07/06/为什么 ++[[]][+[]]+[+[]] = 10？/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2018/07/06/为什么 ++[[]][+[]]+[+[]] = 10？/&text=javascript"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2018/07/06/为什么 ++[[]][+[]]+[+[]] = 10？/&title=javascript"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2018/07/06/为什么 ++[[]][+[]]+[+[]] = 10？/&is_video=false&description=javascript"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=javascript&body=Check out this article: http://yoursite.com/2018/07/06/为什么 ++[[]][+[]]+[+[]] = 10？/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2018/07/06/为什么 ++[[]][+[]]+[+[]] = 10？/&title=javascript"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2018/07/06/为什么 ++[[]][+[]]+[+[]] = 10？/&title=javascript"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2018/07/06/为什么 ++[[]][+[]]+[+[]] = 10？/&title=javascript"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2018/07/06/为什么 ++[[]][+[]]+[+[]] = 10？/&title=javascript"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2018/07/06/为什么 ++[[]][+[]]+[+[]] = 10？/&name=javascript&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 troubledot
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Blog</a></li>
+         
+          <li><a href="https://github.com/Troubledot">Projects</a></li>
+         
+          <li><a href="/URL">LINK_NAME</a></li>
+         
+          <li><a href="/Search/">Search</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/fontawesome-all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-86660611-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Baidu Analytics -->
+
+    <script type="text/javascript">
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?2e6da3c375c8a87f5b664cea6d4cb29c";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+<!-- Disqus Comments -->
+
+
