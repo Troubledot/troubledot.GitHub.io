@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="1、let命令基本用法ES6 新增了let命令，用来声明变量。它的用法类似于var，但是所声明的变量，只在let命令所在的代码块内有效。 123456&amp;#123;	var a = 1;	let b = 2;&amp;#125;a  // 1b  // ReferenceError: a is not defined. 以上分别用var和let声明了变量a和b，输出b的时候会报错，因为let声明的变量只有在">
+<meta property="og:type" content="article">
+<meta property="og:title" content="系统学习ES6一">
+<meta property="og:url" content="http://finding.kim/2018/12/03/系统学习ES6一/index.html">
+<meta property="og:site_name" content="troubledot&#39;blog">
+<meta property="og:description" content="1、let命令基本用法ES6 新增了let命令，用来声明变量。它的用法类似于var，但是所声明的变量，只在let命令所在的代码块内有效。 123456&amp;#123;	var a = 1;	let b = 2;&amp;#125;a  // 1b  // ReferenceError: a is not defined. 以上分别用var和let声明了变量a和b，输出b的时候会报错，因为let声明的变量只有在">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-12-10T09:48:35.575Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="系统学习ES6一">
+<meta name="twitter:description" content="1、let命令基本用法ES6 新增了let命令，用来声明变量。它的用法类似于var，但是所声明的变量，只在let命令所在的代码块内有效。 123456&amp;#123;	var a = 1;	let b = 2;&amp;#125;a  // 1b  // ReferenceError: a is not defined. 以上分别用var和let声明了变量a和b，输出b的时候会报错，因为let声明的变量只有在">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/logo.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/logo.png">
+          
+        
+    
+    <!-- title -->
+    <title>系统学习ES6一</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Blog</a></li>
+         
+          <li><a href="https://github.com/Troubledot">Projects</a></li>
+         
+          <li><a href="/URL">LINK_NAME</a></li>
+         
+          <li><a href="/Search/">Search</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2018/12/06/你不是一个合格的父亲/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2018/08/29/ztree的自定义编辑/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://finding.kim/2018/12/03/系统学习ES6一/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://finding.kim/2018/12/03/系统学习ES6一/&text=系统学习ES6一"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://finding.kim/2018/12/03/系统学习ES6一/&title=系统学习ES6一"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://finding.kim/2018/12/03/系统学习ES6一/&is_video=false&description=系统学习ES6一"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=系统学习ES6一&body=Check out this article: http://finding.kim/2018/12/03/系统学习ES6一/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://finding.kim/2018/12/03/系统学习ES6一/&title=系统学习ES6一"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://finding.kim/2018/12/03/系统学习ES6一/&title=系统学习ES6一"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://finding.kim/2018/12/03/系统学习ES6一/&title=系统学习ES6一"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://finding.kim/2018/12/03/系统学习ES6一/&title=系统学习ES6一"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://finding.kim/2018/12/03/系统学习ES6一/&name=系统学习ES6一&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1、let命令"><span class="toc-number">1.</span> <span class="toc-text">1、let命令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基本用法"><span class="toc-number">1.1.</span> <span class="toc-text">基本用法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#不存在变量提升"><span class="toc-number">1.2.</span> <span class="toc-text">不存在变量提升</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#暂时性死区"><span class="toc-number">1.3.</span> <span class="toc-text">暂时性死区</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#不允许重复声明"><span class="toc-number">1.4.</span> <span class="toc-text">不允许重复声明</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2、块级作用域"><span class="toc-number">2.</span> <span class="toc-text">2、块级作用域</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#块级作用域与函数声明"><span class="toc-number">2.1.</span> <span class="toc-text">块级作用域与函数声明</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-const命令"><span class="toc-number">3.</span> <span class="toc-text">3.const命令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基本用法-1"><span class="toc-number">3.1.</span> <span class="toc-text">基本用法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#本质"><span class="toc-number">3.2.</span> <span class="toc-text">本质</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ES6声明变量的6种方法"><span class="toc-number">3.3.</span> <span class="toc-text">ES6声明变量的6种方法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#顶层对象的属性"><span class="toc-number">4.</span> <span class="toc-text">顶层对象的属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-global对象"><span class="toc-number">5.</span> <span class="toc-text">5.global对象</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        系统学习ES6一
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">troubledot'blog</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2018-12-03T03:31:02.000Z" itemprop="datePublished">2018-12-03</time>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h3 id="1、let命令"><a href="#1、let命令" class="headerlink" title="1、let命令"></a>1、let命令</h3><h4 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h4><p>ES6 新增了let命令，用来声明变量。它的用法类似于var，但是所声明的变量，只在let命令所在的代码块内有效。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	<span class="keyword">var</span> a = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">let</span> b = <span class="number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line">a  <span class="comment">// 1</span></span><br><span class="line">b  <span class="comment">// ReferenceError: a is not defined.</span></span><br></pre></td></tr></table></figure>
+<p>以上分别用var和let声明了变量a和b，输出b的时候会报错，因为let声明的变量只有在let所在的代码块内有效。</p>
+<p>for循环其实就比较适合用let。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>;i&lt;<span class="number">10</span>;i++)&#123;</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br><span class="line">i <span class="comment">// ReferenceError: i is not defined.</span></span><br></pre></td></tr></table></figure>
+<p>这里就比较符合我们的预期：i应该只有在for循环内部起作用；<br>如果换成var,输出i的时候就是10；</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>;i&lt;<span class="number">10</span>;i++)&#123;</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br><span class="line">i <span class="comment">// 10</span></span><br></pre></td></tr></table></figure>
+<p>这里的i是var声明的，在全局范围内有效，所以会输出最后一轮的i；</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = [];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>;i&lt;<span class="number">10</span>;i++)&#123;</span><br><span class="line">	a[i] = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="built_in">console</span>.log(i)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">a[<span class="number">2</span>]()   <span class="comment">//10</span></span><br></pre></td></tr></table></figure>
+<p>这段代码里面a是一个数组，这个数组是由10个funcion组成的，像这样</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a <span class="comment">// [console.log(i),console.log(i),console.log(i),console.log(i),console.log(i),console.log(i),console.log(i),console.log(i),console.log(i),console.log(i)]</span></span><br></pre></td></tr></table></figure>
+<p>我们会发现这里的i好像跟前面那个例子里面的i是一样的，其实函数里面console的这个i一直是一个东西，就是那个在全局声明的i，所以会输出最后一轮的i；</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = [];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>;i&lt;<span class="number">10</span>;i++)&#123;</span><br><span class="line">	a[i] = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="built_in">console</span>.log(i)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">a[<span class="number">2</span>]()   <span class="comment">//2</span></span><br></pre></td></tr></table></figure>
+<p>如果换成let就会变成2了，怎么理解呢，let声明的变量只在当前这一轮循环中有用，也就是说，每次进入循环都会声明一次i，而不是像var那样直接取全局的变量。这样解释的话会有个疑问，如果每一轮循环的变量i都是重新声明的，那它怎么知道上一轮循环的值，从而计算出本轮循环的值？</p>
+<blockquote>
+<p>这是因为 JavaScript 引擎内部会记住上一轮循环的值，初始化本轮的变量i时，就在上一轮循环的基础上进行计算。</p>
+</blockquote>
+<p>另外，for循环还有一个特别之处，就是设置循环变量的那部分是一个父作用域，而循环体内部是一个单独的子作用域。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++) &#123;</span><br><span class="line">  <span class="keyword">let</span> i = <span class="string">'abc'</span>;</span><br><span class="line">  <span class="built_in">console</span>.log(i);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// abc</span></span><br><span class="line"><span class="comment">// abc</span></span><br><span class="line"><span class="comment">// abc</span></span><br></pre></td></tr></table></figure>
+<p>这段代码，第一次循环完成的时候，i被赋值为字符串’abc’，’abc’小于3为false，不满足循环条件，循环应该就结束了。但是事实上依然进了循环。这就很好的印证了上面的结论：</p>
+<blockquote>
+<p>函数内部的变量i与循环变量i不在同一个作用域，有各自单独的作用域。</p>
+</blockquote>
+<h4 id="不存在变量提升"><a href="#不存在变量提升" class="headerlink" title="不存在变量提升"></a>不存在变量提升</h4><p>所谓的变量提升，就是说对于一个变量，如果在声明之前使用它的话，会有个默认值undefined；</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(a) <span class="comment">// undefined</span></span><br><span class="line"><span class="keyword">var</span> a = <span class="number">3</span> ;</span><br></pre></td></tr></table></figure>
+<p>这样容易有一些不确定因素在里面，比如看到一个undefined，它有可能是变量提升的，还有可能它是被我们赋值的undefined；<br>而使用let的时候呢</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(a); <span class="comment">// Uncaught ReferenceError: a is not defined</span></span><br><span class="line"><span class="keyword">let</span> a = <span class="number">2</span>;</span><br></pre></td></tr></table></figure>
+<p>显然这样更加符合逻辑，这个报错的意义也更加明确。<br>所以我感觉let不存在变量提升倒是比较规范的地方，规则越严谨，不确定因素越少。</p>
+<h4 id="暂时性死区"><a href="#暂时性死区" class="headerlink" title="暂时性死区"></a>暂时性死区</h4><p>只要块级作用域内存在let命令，它所声明的变量就“绑定”（binding）这个区域，不再受外部的影响。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> tmp = <span class="number">123</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">  tmp = <span class="string">'abc'</span>; <span class="comment">// ReferenceError</span></span><br><span class="line">  <span class="keyword">let</span> tmp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面代码中，存在全局变量tmp，但是块级作用域内let又声明了一个局部变量tmp，导致后者绑定这个块级作用域，所以在let声明变量前，对tmp赋值会报错。</p>
+<p>ES6 明确规定，如果区块中存在let和const命令，这个区块对这些命令声明的变量，从一开始就形成了封闭作用域。凡是在声明之前就使用这些变量，就会报错。</p>
+<blockquote>
+<p>总之，在代码块内，使用let命令声明变量之前，该变量都是不可用的。这在语法上，称为“暂时性死区”（temporal dead zone，简称 TDZ）。</p>
+</blockquote>
+<p>明白了这个道理，下面这段代码也就很好理解了</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">  <span class="comment">// TDZ开始</span></span><br><span class="line">  tmp = <span class="string">'abc'</span>; <span class="comment">// ReferenceError</span></span><br><span class="line">  <span class="built_in">console</span>.log(tmp); <span class="comment">// ReferenceError</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> tmp; <span class="comment">// TDZ结束</span></span><br><span class="line">  <span class="built_in">console</span>.log(tmp); <span class="comment">// undefined</span></span><br><span class="line"></span><br><span class="line">  tmp = <span class="number">123</span>;</span><br><span class="line">  <span class="built_in">console</span>.log(tmp); <span class="comment">// 123</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>tmp在声明前都是其死区，所以一直报错；</p>
+<p>这里我们需要注意一下typeof命令。如果没有用到let的话，typeof随便用；</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typeof</span> undeclared_variable <span class="comment">// "undefined"</span></span><br></pre></td></tr></table></figure>
+<p>这里的 undeclared_variable 没有被声明过，我们也可以用tpyeof，返回undefined；</p>
+<p>但是如果用到let呢？</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typeof</span> a <span class="comment">// ReferenceError</span></span><br><span class="line"><span class="keyword">let</span> a = <span class="string">'troubledot'</span></span><br></pre></td></tr></table></figure>
+<p>现在我们知道<strong>暂时性死区</strong>这个概念了就很好理解了，typeof位于a的暂时性死区内，所以报错也就自然而然了。</p>
+<blockquote>
+<p>在没有let之前，typeof运算符是百分之百安全的，永远不会报错。现在这一点不成立了。这样的设计是为了让大家养成良好的编程习惯，变量一定要在声明之后使用，否则就报错。</p>
+</blockquote>
+<p>还有一些比较隐蔽的死区不太容易发现。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params">x = y, y = <span class="number">2</span></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> [x, y];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">bar(); <span class="comment">// 报错</span></span><br></pre></td></tr></table></figure>
+<p>执行函数bar的时候，给x赋值y，但是y并没有声明，也就是说我们在y的暂时性死区使用了它，所以会报错。说白了咱们认死理就好</p>
+<blockquote>
+<p>先声明，再使用</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params">x = <span class="number">2</span>, y = x</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> [x, y];</span><br><span class="line">&#125;</span><br><span class="line">bar(); <span class="comment">// [2,2]</span></span><br></pre></td></tr></table></figure>
+<p>使用x之前已经声明过x了，所以不会报错</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 不报错</span></span><br><span class="line"><span class="keyword">var</span> x = x;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 报错</span></span><br><span class="line"><span class="keyword">let</span> x = x;</span><br><span class="line"><span class="comment">// ReferenceError: x is not defined</span></span><br></pre></td></tr></table></figure>
+<p>上面这种情况也比较有意思，其实我们要理解这个只需要明白变量的声明是 ‘let x = x’这句执行完以后才完成的。也就是说，在执行这一句的过程中遇到了x这样一个变量，此时因为赋值语句还没有执行完，所以这里也算是x的暂时性死区，当然就会报错了。</p>
+<h4 id="不允许重复声明"><a href="#不允许重复声明" class="headerlink" title="不允许重复声明"></a>不允许重复声明</h4><blockquote>
+<p>let不允许在相同作用域内，重复声明同一个变量。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 报错</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">func</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> a = <span class="number">10</span>;</span><br><span class="line">  <span class="keyword">var</span> a = <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 报错</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">func</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> a = <span class="number">10</span>;</span><br><span class="line">  <span class="keyword">let</span> a = <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们注意到，只要用到了let就不能有重复声明，不管重复的变量是不是用let声明的。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">func</span>(<span class="params">arg</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> arg; <span class="comment">// 报错</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>不能在函数内部重复声明参数，但是下面这种不会报错</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">func</span>(<span class="params">arg</span>) </span>&#123;</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">let</span> arg; <span class="comment">// 不报错</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>回忆一下最开始的时候说的，let只在let命令所在的代码块内有效。</p>
+<h3 id="2、块级作用域"><a href="#2、块级作用域" class="headerlink" title="2、块级作用域"></a>2、块级作用域</h3><p>通过对let的了解，看得出来let位JavaScript新增了块级作用域</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f1</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> n = <span class="number">5</span>;</span><br><span class="line">  <span class="keyword">if</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> n = <span class="number">10</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">console</span>.log(n); <span class="comment">// 5</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个例子能够很好的帮我吗理解块级作用域，let声明的变量，只在自己的作用域内有效，代码块外层不会收到内层的影响。<br>ES6 允许块级作用域的任意嵌套。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;&#123;&#123;&#123;<span class="keyword">let</span> insane = <span class="string">'Hello World'</span>&#125;&#125;&#125;&#125;&#125;;</span><br></pre></td></tr></table></figure>
+<p>上面代码使用了一个五层的块级作用域。外层作用域无法读取内层作用域的变量。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;&#123;&#123;</span><br><span class="line">  &#123;<span class="keyword">let</span> insane = <span class="string">'Hello World'</span>&#125;</span><br><span class="line">  <span class="built_in">console</span>.log(insane); <span class="comment">// 报错</span></span><br><span class="line">&#125;&#125;&#125;&#125;;</span><br></pre></td></tr></table></figure>
+<p>外层读取不到内存定义的变量</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;&#123;&#123;</span><br><span class="line">  <span class="keyword">let</span> insane = <span class="string">'Hello World'</span>;</span><br><span class="line">  &#123;<span class="keyword">let</span> insane = <span class="string">'Hello World'</span>&#125;</span><br><span class="line">&#125;&#125;&#125;&#125;;</span><br></pre></td></tr></table></figure>
+<p>内层作用域可以定义外层作用域内的同名变量。</p>
+<p>我们知道，立即执行函数就是为了隔离作用域，避免变量污染，所以块级作用域的出现，实际上使得获得广泛应用的立即执行函数表达式（IIFE）不再必要了。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// IIFE 写法</span></span><br><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> tmp = ...;</span><br><span class="line">  ...</span><br><span class="line">&#125;());</span><br><span class="line"></span><br><span class="line"><span class="comment">// 块级作用域写法</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">let</span> tmp = ...;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="块级作用域与函数声明"><a href="#块级作用域与函数声明" class="headerlink" title="块级作用域与函数声明"></a>块级作用域与函数声明</h4><p>函数能不能在块级作用域之中声明？这是一个相当令人混淆的问题。</p>
+<p>ES5 规定，函数只能在顶层作用域和函数作用域之中声明，不能在块级作用域声明。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 情况一</span></span><br><span class="line"><span class="keyword">if</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 情况二</span></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line">&#125; <span class="keyword">catch</span>(e) &#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这两种情况，根据es5的规定，都是非法的。<br>但是，浏览器没有遵守这个规定，为了兼容以前的旧代码，还是支持在块级作用域之中声明函数，因此上面两种情况实际都能运行，不会报错。</p>
+<p>ES6 引入了块级作用域，明确允许在块级作用域之中声明函数。ES6 规定，块级作用域之中，函数声明语句的行为类似于let，在块级作用域之外不可引用。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>) </span>&#123; <span class="built_in">console</span>.log(<span class="string">'I am outside!'</span>); &#125;</span><br><span class="line"></span><br><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="literal">false</span>) &#123;</span><br><span class="line">    <span class="comment">// 重复声明一次函数f</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>) </span>&#123; <span class="built_in">console</span>.log(<span class="string">'I am inside!'</span>); &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  f();</span><br><span class="line">&#125;());</span><br></pre></td></tr></table></figure>
+<p>上面代码在 ES5 中运行，会得到“I am inside!”，因为在if内声明的函数f会被提升到函数头部，实际运行的代码如下。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>) </span>&#123; <span class="built_in">console</span>.log(<span class="string">'I am outside!'</span>); &#125;</span><br><span class="line"></span><br><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>) </span>&#123; <span class="built_in">console</span>.log(<span class="string">'I am inside!'</span>); &#125;</span><br><span class="line">  <span class="keyword">if</span> (<span class="literal">false</span>) &#123;</span><br><span class="line">    </span><br><span class="line">  &#125;</span><br><span class="line">  f();</span><br><span class="line">&#125;());</span><br></pre></td></tr></table></figure></p>
+<p>ES6 就完全不一样了，理论上会得到“I am outside!”。因为块级作用域内声明的函数类似于let，对作用域之外没有影响。但是，如果你真的在 ES6 浏览器中运行一下上面的代码，是会报错的，这是为什么呢？</p>
+<p>原来，如果改变了块级作用域内声明的函数的处理规则，显然会对老代码产生很大影响。为了减轻因此产生的不兼容问题，ES6 在附录 B里面规定，浏览器的实现可以不遵守上面的规定，有自己的行为方式。</p>
+<ul>
+<li>允许在块级作用域内声明函数。</li>
+<li>函数声明类似于var，即会提升到全局作用域或函数作用域的头部。</li>
+<li>同时，函数声明还会提升到所在的块级作用域的头部。</li>
+</ul>
+<p>注意，上面三条规则只对 ES6 的浏览器实现有效，其他环境的实现不用遵守，还是将块级作用域的函数声明当作let处理。</p>
+<p>根据这三条规则，在浏览器的 ES6 环境中，块级作用域内声明的函数，行为类似于var声明的变量。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 浏览器的 ES6 环境</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>) </span>&#123; <span class="built_in">console</span>.log(<span class="string">'I am outside!'</span>); &#125;</span><br><span class="line"></span><br><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="literal">false</span>) &#123;</span><br><span class="line">    <span class="comment">// 重复声明一次函数f</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>) </span>&#123; <span class="built_in">console</span>.log(<span class="string">'I am inside!'</span>); &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  f();</span><br><span class="line">&#125;());</span><br><span class="line"><span class="comment">// Uncaught TypeError: f is not a function</span></span><br></pre></td></tr></table></figure>
+<p>上面的代码在符合 ES6 的浏览器中，都会报错，因为实际运行的是下面的代码。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// 浏览器的 ES6 环境</span><br><span class="line">function f() &#123; console.log(&apos;I am outside!&apos;); &#125;</span><br><span class="line">(function () &#123;</span><br><span class="line">  var f = undefined;</span><br><span class="line">  if (false) &#123;</span><br><span class="line">    function f() &#123; console.log(&apos;I am inside!&apos;); &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  f();</span><br><span class="line">&#125;());</span><br><span class="line">// Uncaught TypeError: f is not a function</span><br></pre></td></tr></table></figure>
+<p>考虑到环境导致的行为差异太大，应该避免在块级作用域内声明函数。如果确实需要，也应该写成函数表达式，而不是函数声明语句。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 函数声明语句</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">let</span> a = <span class="string">'secret'</span>;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 函数表达式</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">let</span> a = <span class="string">'secret'</span>;</span><br><span class="line">  <span class="keyword">let</span> f = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>另外，还有一个需要注意的地方。ES6 的块级作用域允许声明函数的规则，只在使用大括号的情况下成立，如果没有使用大括号，就会报错。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// 不报错</span></span><br><span class="line"><span class="meta">'use strict'</span>;</span><br><span class="line"><span class="keyword">if</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 报错</span></span><br><span class="line"><span class="meta">'use strict'</span>;</span><br><span class="line"><span class="keyword">if</span> (<span class="literal">true</span>)</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>) </span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="3-const命令"><a href="#3-const命令" class="headerlink" title="3.const命令"></a>3.const命令</h3><h4 id="基本用法-1"><a href="#基本用法-1" class="headerlink" title="基本用法"></a>基本用法</h4><p>const声明一个只读的常量。一旦声明，常量的值就不能改变。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> PI = <span class="number">3.1415</span>;</span><br><span class="line">PI <span class="comment">// 3.1415</span></span><br><span class="line"></span><br><span class="line">PI = <span class="number">3</span>;</span><br><span class="line"><span class="comment">// TypeError: Assignment to constant variable.</span></span><br></pre></td></tr></table></figure>
+<p>改变const声明的PI的值就会报错。</p>
+<p>const声明的变量不得改变值，这意味着，const一旦声明变量，就必须立即初始化，不能留到以后赋值。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> foo;</span><br><span class="line"><span class="comment">// SyntaxError: Missing initializer in const declaration</span></span><br></pre></td></tr></table></figure>
+<p>只声明不赋值就会报错。<br>其他的地方，const和let一样，不能重复声明，存在暂时性死区，只能在声明以后再使用。</p>
+<h4 id="本质"><a href="#本质" class="headerlink" title="本质"></a>本质</h4><p>const实际上保证的，并不是变量的值不得改动，而是变量指向的那个内存地址所保存的数据不得改动。对于简单类型的数据（数值、字符串、布尔值），值就保存在变量指向的那个内存地址，因此等同于常量。但对于复合类型的数据（主要是对象和数组），变量指向的内存地址，保存的只是一个指向实际数据的指针，const只能保证这个指针是固定的（即总是指向另一个固定的地址），至于它指向的数据结构是不是可变的，就完全不能控制了。因此，将一个对象声明为常量必须非常小心。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> foo = &#123;&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 为 foo 添加一个属性，可以成功</span></span><br><span class="line">foo.prop = <span class="number">123</span>;</span><br><span class="line">foo.prop <span class="comment">// 123</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 将 foo 指向另一个对象，就会报错</span></span><br><span class="line">foo = &#123;&#125;; <span class="comment">// TypeError: "foo" is read-only</span></span><br></pre></td></tr></table></figure>
+<p>这里的foo是一个对象，它存储的其实是一个地址，这个地址指向一个对象。对象本身可以改变的，所以我们给他添加一个属性的时候没有报错，但是如果改变了指向的话，就会报错了。</p>
+<p>对象是这样，数组也是。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> a = [];</span><br><span class="line">a.push(<span class="string">'Hello'</span>); <span class="comment">// 可执行</span></span><br><span class="line">a.length = <span class="number">0</span>;    <span class="comment">// 可执行</span></span><br><span class="line">a = [<span class="string">'Dave'</span>];    <span class="comment">// 报错</span></span><br></pre></td></tr></table></figure>
+<p>当然，有时候或许我们还真的需要这种功能，就是真正的让对象都不能变化，我们可以使用Object.freeze方法。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> foo = <span class="built_in">Object</span>.freeze(&#123;&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 常规模式时，下面一行不起作用；</span></span><br><span class="line"><span class="comment">// 严格模式时，该行会报错</span></span><br><span class="line">foo.prop = <span class="number">123</span>;</span><br></pre></td></tr></table></figure>
+<p>这里的foo指向一个冻结的对象Object，所以添加新属性不起作用，严格模式时还会报错。</p>
+<p>除了将对象本身冻结，对象的属性也应该冻结。下面是一个将对象彻底冻结的函数。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> constantize = <span class="function">(<span class="params">obj</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">Object</span>.freeze(obj);</span><br><span class="line">  <span class="built_in">Object</span>.keys(obj).forEach( <span class="function">(<span class="params">key, i</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> ( <span class="keyword">typeof</span> obj[key] === <span class="string">'object'</span> ) &#123;</span><br><span class="line">      constantize( obj[key] );</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h4 id="ES6声明变量的6种方法"><a href="#ES6声明变量的6种方法" class="headerlink" title="ES6声明变量的6种方法"></a>ES6声明变量的6种方法</h4><p>ES5声明变量只有var和function两种命令；ES6中除了这两种，还有四种：我们前面提到的let、const，还有import和class命令；</p>
+<h3 id="顶层对象的属性"><a href="#顶层对象的属性" class="headerlink" title="顶层对象的属性"></a>顶层对象的属性</h3><p>顶层对象，在浏览器环境指的是window对象，在node指的是global对象。ES5之中，顶层对象的属性与全局变量是等价的</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.a = <span class="number">1</span>;</span><br><span class="line">a. <span class="comment">// 1</span></span><br><span class="line">a = <span class="number">2</span>;</span><br><span class="line"><span class="built_in">window</span>.a <span class="comment">//2</span></span><br></pre></td></tr></table></figure>
+<p>也就是所有我们定义的全局变量，都可以看作是顶层对象的属性；也就是说上面的顶层对象的属性赋值和全局变量的赋值其实是同一件事情。</p>
+<p>顶层对象的属性与全局变量挂钩，被认为是 JavaScript 语言最大的设计败笔之一。这样的设计带来了几个很大的问题，首先是没法在编译时就报出变量未声明的错误，只有运行时才能知道（因为全局变量可能是顶层对象的属性创造的，而属性的创造是动态的）；其次，程序员很容易不知不觉地就创建了全局变量（比如打字出错）；最后，顶层对象的属性是到处可以读写的，这非常不利于模块化编程。另一方面，window对象有实体含义，指的是浏览器的窗口对象，顶层对象是一个有实体含义的对象，也是不合适的。</p>
+<p>ES6 为了改变这一点：</p>
+<ul>
+<li>一方面规定，为了保持兼容性，var命令和function命令声明的全局变量，依旧是顶层对象的属性；</li>
+<li>另一方面规定，let命令、const命令、class命令声明的全局变量，不属于顶层对象的属性。也就是说，从 ES6 开始，全局变量将逐步与顶层对象的属性脱钩。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span>;</span><br><span class="line"><span class="comment">// 如果在 Node 的 REPL 环境，可以写成 global.a</span></span><br><span class="line"><span class="comment">// 或者采用通用方法，写成 this.a</span></span><br><span class="line"><span class="built_in">window</span>.a <span class="comment">// 1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> b = <span class="number">1</span>;</span><br><span class="line"><span class="built_in">window</span>.b <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
+<p>这里var声明的全局变量a就是顶层对象的属性，而用let声明的b则不是。</p>
+<h3 id="5-global对象"><a href="#5-global对象" class="headerlink" title="5.global对象"></a>5.global对象</h3><p>ES5 的顶层对象，本身也是一个问题，因为它在各种实现里面是不统一的。</p>
+<ul>
+<li>浏览器里面，顶层对象是window，但 Node 和 Web Worker 没有window。</li>
+<li>浏览器和 Web Worker 里面，self也指向顶层对象，但是 Node 没有self。</li>
+<li>Node 里面，顶层对象是global，但其他环境都不支持。</li>
+</ul>
+<p>同一段代码为了能够在各种环境，都能取到顶层对象，现在一般是使用this变量，但是有局限性。</p>
+<ul>
+<li>全局环境中，this会返回顶层对象。但是，Node 模块和 ES6 模块中，this返回的是当前模块。</li>
+<li>函数里面的this，如果函数不是作为对象的方法运行，而是单纯作为函数运行，this会指向顶层对象。但是，严格模式下，这时this会返回undefined。</li>
+<li>不管是严格模式，还是普通模式，new Function(‘return this’)()，总是会返回全局对象。但是，如果浏览器用了 CSP（Content Security Policy，内容安全策略），那么eval、new Function这些方法都可能无法使用。</li>
+</ul>
+<p>也就是说，我们的js代码有可能因为换了执行环境就出错了<br>综上所述，很难找到一种方法，可以在所有情况下，都取到顶层对象。下面是两种勉强可以使用的方法。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 方法一</span></span><br><span class="line">(<span class="keyword">typeof</span> <span class="built_in">window</span> !== <span class="string">'undefined'</span></span><br><span class="line">   ? <span class="built_in">window</span></span><br><span class="line">   : (<span class="keyword">typeof</span> process === <span class="string">'object'</span> &amp;&amp;</span><br><span class="line">      <span class="keyword">typeof</span> <span class="built_in">require</span> === <span class="string">'function'</span> &amp;&amp;</span><br><span class="line">      <span class="keyword">typeof</span> global === <span class="string">'object'</span>)</span><br><span class="line">     ? global</span><br><span class="line">     : <span class="keyword">this</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 方法二</span></span><br><span class="line"><span class="keyword">var</span> getGlobal = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> self !== <span class="string">'undefined'</span>) &#123; <span class="keyword">return</span> self; &#125;</span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="built_in">window</span> !== <span class="string">'undefined'</span>) &#123; <span class="keyword">return</span> <span class="built_in">window</span>; &#125;</span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> global !== <span class="string">'undefined'</span>) &#123; <span class="keyword">return</span> global; &#125;</span><br><span class="line">  <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'unable to locate global object'</span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>有点猥琐。。</p>
+<p>现在有一个提案，在语言标准的层面，引入global作为顶层对象。也就是说，在所有环境下，global都是存在的，都可以从它拿到顶层对象。</p>
+<p>垫片库system.global模拟了这个提案，可以在所有环境拿到global。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// CommonJS 的写法</span></span><br><span class="line"><span class="built_in">require</span>(<span class="string">'system.global/shim'</span>)();</span><br><span class="line"></span><br><span class="line"><span class="comment">// ES6 模块的写法</span></span><br><span class="line"><span class="keyword">import</span> shim <span class="keyword">from</span> <span class="string">'system.global/shim'</span>; shim();</span><br></pre></td></tr></table></figure>
+<p>上面代码可以保证各种环境里面，global对象都是存在的。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// CommonJS 的写法</span></span><br><span class="line"><span class="keyword">var</span> global = <span class="built_in">require</span>(<span class="string">'system.global'</span>)();</span><br><span class="line"></span><br><span class="line"><span class="comment">// ES6 模块的写法</span></span><br><span class="line"><span class="keyword">import</span> getGlobal <span class="keyword">from</span> <span class="string">'system.global'</span>;</span><br><span class="line"><span class="keyword">const</span> global = getGlobal();</span><br></pre></td></tr></table></figure>
+<p>上面代码将顶层对象放入变量global。</p>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Blog</a></li>
+         
+          <li><a href="https://github.com/Troubledot">Projects</a></li>
+         
+          <li><a href="/URL">LINK_NAME</a></li>
+         
+          <li><a href="/Search/">Search</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1、let命令"><span class="toc-number">1.</span> <span class="toc-text">1、let命令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基本用法"><span class="toc-number">1.1.</span> <span class="toc-text">基本用法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#不存在变量提升"><span class="toc-number">1.2.</span> <span class="toc-text">不存在变量提升</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#暂时性死区"><span class="toc-number">1.3.</span> <span class="toc-text">暂时性死区</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#不允许重复声明"><span class="toc-number">1.4.</span> <span class="toc-text">不允许重复声明</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2、块级作用域"><span class="toc-number">2.</span> <span class="toc-text">2、块级作用域</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#块级作用域与函数声明"><span class="toc-number">2.1.</span> <span class="toc-text">块级作用域与函数声明</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-const命令"><span class="toc-number">3.</span> <span class="toc-text">3.const命令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基本用法-1"><span class="toc-number">3.1.</span> <span class="toc-text">基本用法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#本质"><span class="toc-number">3.2.</span> <span class="toc-text">本质</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ES6声明变量的6种方法"><span class="toc-number">3.3.</span> <span class="toc-text">ES6声明变量的6种方法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#顶层对象的属性"><span class="toc-number">4.</span> <span class="toc-text">顶层对象的属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-global对象"><span class="toc-number">5.</span> <span class="toc-text">5.global对象</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://finding.kim/2018/12/03/系统学习ES6一/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://finding.kim/2018/12/03/系统学习ES6一/&text=系统学习ES6一"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://finding.kim/2018/12/03/系统学习ES6一/&title=系统学习ES6一"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://finding.kim/2018/12/03/系统学习ES6一/&is_video=false&description=系统学习ES6一"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=系统学习ES6一&body=Check out this article: http://finding.kim/2018/12/03/系统学习ES6一/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://finding.kim/2018/12/03/系统学习ES6一/&title=系统学习ES6一"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://finding.kim/2018/12/03/系统学习ES6一/&title=系统学习ES6一"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://finding.kim/2018/12/03/系统学习ES6一/&title=系统学习ES6一"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://finding.kim/2018/12/03/系统学习ES6一/&title=系统学习ES6一"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://finding.kim/2018/12/03/系统学习ES6一/&name=系统学习ES6一&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 troubledot
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Blog</a></li>
+         
+          <li><a href="https://github.com/Troubledot">Projects</a></li>
+         
+          <li><a href="/URL">LINK_NAME</a></li>
+         
+          <li><a href="/Search/">Search</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/fontawesome-all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-86660611-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Baidu Analytics -->
+
+    <script type="text/javascript">
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?2e6da3c375c8a87f5b664cea6d4cb29c";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+<!-- Disqus Comments -->
+
+
