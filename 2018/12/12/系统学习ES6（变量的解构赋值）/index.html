@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="1.数组的解构赋值基本用法 ES6 允许按照一定模式，从数组和对象中提取值，对变量进行赋值，这被称为解构（Destructuring）。  以前的变量赋值都是直接指定值： 12let a = 1;let b = 2; ES6里可以写成这样。 1let [a,b] = [1,2] 表示我们可以从数组中提取对应值，按照对应的位置对变量赋值。 本质上，这种写法属于“模式匹配”，只要等号两边的模式相同，左">
+<meta property="og:type" content="article">
+<meta property="og:title" content="系统学习ES6（变量的解构赋值）">
+<meta property="og:url" content="http://finding.kim/2018/12/12/系统学习ES6（变量的解构赋值）/index.html">
+<meta property="og:site_name" content="troubledot&#39;blog">
+<meta property="og:description" content="1.数组的解构赋值基本用法 ES6 允许按照一定模式，从数组和对象中提取值，对变量进行赋值，这被称为解构（Destructuring）。  以前的变量赋值都是直接指定值： 12let a = 1;let b = 2; ES6里可以写成这样。 1let [a,b] = [1,2] 表示我们可以从数组中提取对应值，按照对应的位置对变量赋值。 本质上，这种写法属于“模式匹配”，只要等号两边的模式相同，左">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-12-13T03:13:26.950Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="系统学习ES6（变量的解构赋值）">
+<meta name="twitter:description" content="1.数组的解构赋值基本用法 ES6 允许按照一定模式，从数组和对象中提取值，对变量进行赋值，这被称为解构（Destructuring）。  以前的变量赋值都是直接指定值： 12let a = 1;let b = 2; ES6里可以写成这样。 1let [a,b] = [1,2] 表示我们可以从数组中提取对应值，按照对应的位置对变量赋值。 本质上，这种写法属于“模式匹配”，只要等号两边的模式相同，左">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/logo.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/logo.png">
+          
+        
+    
+    <!-- title -->
+    <title>系统学习ES6（变量的解构赋值）</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Blog</a></li>
+         
+          <li><a href="https://github.com/Troubledot">Projects</a></li>
+         
+          <li><a href="/URL">LINK_NAME</a></li>
+         
+          <li><a href="/Search/">Search</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/2018/12/06/你不是一个合格的父亲/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://finding.kim/2018/12/12/系统学习ES6（变量的解构赋值）/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://finding.kim/2018/12/12/系统学习ES6（变量的解构赋值）/&text=系统学习ES6（变量的解构赋值）"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://finding.kim/2018/12/12/系统学习ES6（变量的解构赋值）/&title=系统学习ES6（变量的解构赋值）"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://finding.kim/2018/12/12/系统学习ES6（变量的解构赋值）/&is_video=false&description=系统学习ES6（变量的解构赋值）"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=系统学习ES6（变量的解构赋值）&body=Check out this article: http://finding.kim/2018/12/12/系统学习ES6（变量的解构赋值）/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://finding.kim/2018/12/12/系统学习ES6（变量的解构赋值）/&title=系统学习ES6（变量的解构赋值）"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://finding.kim/2018/12/12/系统学习ES6（变量的解构赋值）/&title=系统学习ES6（变量的解构赋值）"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://finding.kim/2018/12/12/系统学习ES6（变量的解构赋值）/&title=系统学习ES6（变量的解构赋值）"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://finding.kim/2018/12/12/系统学习ES6（变量的解构赋值）/&title=系统学习ES6（变量的解构赋值）"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://finding.kim/2018/12/12/系统学习ES6（变量的解构赋值）/&name=系统学习ES6（变量的解构赋值）&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-数组的解构赋值"><span class="toc-number">1.</span> <span class="toc-text">1.数组的解构赋值</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基本用法"><span class="toc-number">1.1.</span> <span class="toc-text">基本用法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#默认值"><span class="toc-number">1.2.</span> <span class="toc-text">默认值</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-对象的解构赋值"><span class="toc-number">2.</span> <span class="toc-text">2.对象的解构赋值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-字符串的解构赋值"><span class="toc-number">3.</span> <span class="toc-text">3.字符串的解构赋值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-数组和布尔值的解构赋值"><span class="toc-number">4.</span> <span class="toc-text">4.数组和布尔值的解构赋值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-函数参数的解构赋值"><span class="toc-number">5.</span> <span class="toc-text">5.函数参数的解构赋值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-圆括号问题"><span class="toc-number">6.</span> <span class="toc-text">6.圆括号问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#不能使用圆括号的情况"><span class="toc-number">6.1.</span> <span class="toc-text">不能使用圆括号的情况</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-变量声明语句"><span class="toc-number">6.1.1.</span> <span class="toc-text">1. 变量声明语句</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-函数参数"><span class="toc-number">6.1.2.</span> <span class="toc-text">2.函数参数</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-赋值语句的模式"><span class="toc-number">6.1.3.</span> <span class="toc-text">3.赋值语句的模式</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#可以使用圆括号的情况"><span class="toc-number">6.2.</span> <span class="toc-text">可以使用圆括号的情况</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-用途"><span class="toc-number">7.</span> <span class="toc-text">7.用途</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-交换变量的值"><span class="toc-number">7.1.</span> <span class="toc-text">(1) 交换变量的值</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#（2）从函数返回多个值"><span class="toc-number">7.2.</span> <span class="toc-text">（2）从函数返回多个值</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#（3）函数参数的定义"><span class="toc-number">7.3.</span> <span class="toc-text">（3）函数参数的定义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4）提取-JSON-数据"><span class="toc-number">7.4.</span> <span class="toc-text">(4）提取 JSON 数据</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#（5）函数参数的默认值"><span class="toc-number">7.5.</span> <span class="toc-text">（5）函数参数的默认值</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#（6）遍历-Map-结构"><span class="toc-number">7.6.</span> <span class="toc-text">（6）遍历 Map 结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#（7）输入模块的指定方法。"><span class="toc-number">7.7.</span> <span class="toc-text">（7）输入模块的指定方法。</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        系统学习ES6（变量的解构赋值）
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">troubledot'blog</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2018-12-12T03:24:45.000Z" itemprop="datePublished">2018-12-12</time>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h3 id="1-数组的解构赋值"><a href="#1-数组的解构赋值" class="headerlink" title="1.数组的解构赋值"></a>1.数组的解构赋值</h3><h4 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h4><blockquote>
+<p>ES6 允许按照一定模式，从数组和对象中提取值，对变量进行赋值，这被称为解构（Destructuring）。</p>
+</blockquote>
+<p>以前的变量赋值都是直接指定值：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">let</span> b = <span class="number">2</span>;</span><br></pre></td></tr></table></figure>
+<p>ES6里可以写成这样。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> [a,b] = [<span class="number">1</span>,<span class="number">2</span>]</span><br></pre></td></tr></table></figure>
+<p>表示我们可以从数组中提取对应值，按照对应的位置对变量赋值。</p>
+<p>本质上，这种写法属于“模式匹配”，只要等号两边的模式相同，左边的变量就会被赋予对应的值。下面是一些使用嵌套数组进行解构的例子。</p>
+<p>其实这种匹配模式比较好理解，我记得上学的时候有学过一个比较系数法，就是这个意思；</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> [foo,[[bar],baz]] = [<span class="number">1</span>,[[<span class="number">2</span>],<span class="number">3</span>]];</span><br><span class="line">foo <span class="comment">// 1;</span></span><br><span class="line">bar <span class="comment">// 2;</span></span><br><span class="line">baz <span class="comment">// 3;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> [ , , third] = [<span class="string">"foo"</span>, <span class="string">"bar"</span>, <span class="string">"baz"</span>];</span><br><span class="line">third <span class="comment">// "baz"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> [head, ...tail] = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>];</span><br><span class="line">head <span class="comment">// 1</span></span><br><span class="line">tail <span class="comment">// [2, 3, 4]</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> [x, y, ...z] = [<span class="string">'a'</span>];</span><br><span class="line">x <span class="comment">// "a"</span></span><br><span class="line">y <span class="comment">// undefined</span></span><br><span class="line">z <span class="comment">// []</span></span><br></pre></td></tr></table></figure>
+<p>如果解构不成功，变量的值就是undefined；</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> [b] = [];</span><br><span class="line"><span class="keyword">let</span> [a,b] = [];</span><br></pre></td></tr></table></figure>
+<p>上面这两种情况下，b的值都是undefined；</p>
+<p>还有一种情况是不完全解构，就是说等号左右两边不一定一一对应，这样也能解构成功；</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> [x,y] = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>];</span><br><span class="line">x <span class="comment">//1</span></span><br><span class="line">y<span class="comment">//2</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> [a,[b,c],d] = [<span class="number">1</span>,[<span class="number">2</span>],<span class="number">3</span>]</span><br><span class="line">a <span class="comment">//1</span></span><br><span class="line">b <span class="comment">//2</span></span><br><span class="line">c <span class="comment">//undefined</span></span><br><span class="line">d <span class="comment">//3</span></span><br></pre></td></tr></table></figure>
+<p>上面的情况都属于不完全解构，但是可以成功；</p>
+<p>如果等号右边不是数组的话，会报错。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 报错</span></span><br><span class="line"><span class="keyword">let</span> [foo] = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">let</span> [foo] = <span class="literal">false</span>;</span><br><span class="line"><span class="keyword">let</span> [foo] = <span class="literal">NaN</span>;</span><br><span class="line"><span class="keyword">let</span> [foo] = <span class="literal">undefined</span>;</span><br><span class="line"><span class="keyword">let</span> [foo] = <span class="literal">null</span>;</span><br><span class="line"><span class="keyword">let</span> [foo] = &#123;&#125;;</span><br></pre></td></tr></table></figure>
+<h4 id="默认值"><a href="#默认值" class="headerlink" title="默认值"></a>默认值</h4><blockquote>
+<p>解构赋值允许指定默认值</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> [foo = <span class="literal">true</span>] = [];</span><br><span class="line">foo <span class="comment">//true</span></span><br><span class="line"><span class="keyword">let</span> [x,y = <span class="string">'b'</span>] = [<span class="string">'a'</span>]  <span class="comment">//x = 'a' y = 'b'</span></span><br><span class="line"><span class="keyword">let</span> [x, y = <span class="string">'b'</span>] = [<span class="string">'a'</span>, <span class="literal">undefined</span>]; <span class="comment">// x='a', y='b'</span></span><br></pre></td></tr></table></figure>
+<p><strong>注意，ES6 内部使用严格相等运算符（===），判断一个位置是否有值。所以，只有当一个数组成员严格等于undefined，默认值才会生效。</strong></p>
+<p>上呢判断y等于undefined，默认值生效，y = ‘b’；</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> [x = <span class="number">1</span>] = [<span class="literal">undefined</span>];</span><br><span class="line">x <span class="comment">// 1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> [x = <span class="number">1</span>] = [<span class="literal">null</span>];</span><br><span class="line">x <span class="comment">// null</span></span><br></pre></td></tr></table></figure>
+<p>这里x = null，null不严格等于undefined，所以默认值没有生效，x = null；</p>
+<p>如果默认值是一个表达式，那么这个表达式是惰性求值的，也就是说如果要用到的时候才会求值；</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">'aaa'</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> [x=f()] = [<span class="number">1</span>];</span><br></pre></td></tr></table></figure>
+<p>这里x不用执行f就能取到值，所以函数不会执行，上面的代码等价于：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">'aaa'</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> ([<span class="number">1</span>][<span class="number">0</span>] === <span class="literal">undefined</span>)&#123;</span><br><span class="line">	f()</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span>&#123;</span><br><span class="line">	x = [<span class="number">1</span>][<span class="number">0</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>默认值也可以引用解构赋值的其他变量，但是该变量必须被声明；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let [x = 1, y = x] = [];     // x=1; y=1</span><br><span class="line">let [x = 1, y = x] = [2];    // x=2; y=2</span><br><span class="line">let [x = 1, y = x] = [1, 2]; // x=1; y=2</span><br><span class="line">let [x = y, y = 1] = [];     // ReferenceError: y is not defined</span><br></pre></td></tr></table></figure>
+<p>这里又复习了暂时性死区的概念。</p>
+<h3 id="2-对象的解构赋值"><a href="#2-对象的解构赋值" class="headerlink" title="2.对象的解构赋值"></a>2.对象的解构赋值</h3><p>明白了匹配的话对象的解构赋值也就很好理解了；</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> &#123;name,age&#125; = &#123;<span class="attr">name</span>:<span class="string">'troubledot'</span>,<span class="attr">age</span>:<span class="number">28</span>&#125;</span><br><span class="line">name <span class="comment">//'troubledot'</span></span><br><span class="line">age <span class="comment">// 28</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> &#123;age,name&#125; = &#123;<span class="attr">name</span>:<span class="string">'troubledot'</span>,<span class="attr">age</span>:<span class="number">28</span>&#125;</span><br><span class="line">name <span class="comment">//'troubledot'</span></span><br><span class="line">age <span class="comment">// 28</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> &#123;sex&#125; = &#123;<span class="attr">name</span>:<span class="string">'troubledot'</span>,<span class="attr">age</span>:<span class="number">28</span>&#125;;</span><br><span class="line">sex <span class="comment">//undefined</span></span><br></pre></td></tr></table></figure>
+<p>不难发现，数组的解构赋值是用索引来匹配的，对象的解构赋值是用key来匹配的；</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> &#123;<span class="attr">name</span>:me&#125; = &#123;<span class="attr">name</span>:<span class="string">'troubledot'</span>&#125;</span><br><span class="line">me <span class="comment">// 'troubledot'</span></span><br></pre></td></tr></table></figure>
+<p>在对象的解构赋值中，对象的属性是一个连通变量和值的桥梁。打个比方就是我的年龄是a，我的年龄是28，那么a = 28，而年龄就是连通a和28的桥梁，年龄是一种<strong>模式</strong>，真正被赋值的不是年龄，而是a；</p>
+<p>嵌套结构的对象也可以解构；</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123;</span><br><span class="line">  p: [</span><br><span class="line">    <span class="string">'Hello'</span>,</span><br><span class="line">    &#123; <span class="attr">y</span>: <span class="string">'World'</span> &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> &#123; <span class="attr">p</span>: [x, &#123; y &#125;] &#125; = obj;</span><br><span class="line">x <span class="comment">// "Hello"</span></span><br><span class="line">y <span class="comment">// "World"</span></span><br></pre></td></tr></table></figure>
+<p>这里的p对应的是我的比方里面的年龄，被赋值的不是它而是x和y；</p>
+<p>如果需要对p赋值，应该这样写</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">let obj = &#123;</span><br><span class="line">  p: [</span><br><span class="line">    &apos;Hello&apos;,</span><br><span class="line">    &#123; y: &apos;World&apos; &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;;</span><br><span class="line">let &#123;p&#125; = obj;</span><br><span class="line"></span><br><span class="line">p //[&apos;Hello&apos;,&#123; y: &apos;World&apos; &#125;]</span><br></pre></td></tr></table></figure>
+<p>这里只对p进行了解构，如果我们还是需要x和y的话，需要对x和y再进行解构；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">let obj = &#123;</span><br><span class="line">  p: [</span><br><span class="line">    &apos;Hello&apos;,</span><br><span class="line">    &#123; y: &apos;World&apos; &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;;</span><br><span class="line">let &#123;p,p:[x,&#123;y&#125;]&#125; = obj;</span><br><span class="line"></span><br><span class="line">p //[&apos;Hello&apos;,&#123; y: &apos;World&apos; &#125;]</span><br><span class="line">x // &quot;Hello&quot;</span><br><span class="line">y // &quot;World&quot;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> node = &#123;</span><br><span class="line">  loc: &#123;</span><br><span class="line">    start: &#123;</span><br><span class="line">      line: <span class="number">1</span>,</span><br><span class="line">      column: <span class="number">5</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> &#123; loc, <span class="attr">loc</span>: &#123; start &#125;, <span class="attr">loc</span>: &#123; <span class="attr">start</span>: &#123; line &#125;&#125; &#125; = node;</span><br><span class="line">line <span class="comment">// 1</span></span><br><span class="line">loc  <span class="comment">// Object &#123;start: Object&#125;</span></span><br><span class="line">start <span class="comment">// Object &#123;line: 1, column: 5&#125;</span></span><br></pre></td></tr></table></figure>
+<p>上面代码分别对loc，start和line进行了解构；</p>
+<p>看一个对象嵌套赋值的例子；</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123;&#125;;</span><br><span class="line"><span class="keyword">let</span> arr = [];</span><br><span class="line">(&#123;<span class="attr">name</span>:obj.name,<span class="attr">age</span>:arr[<span class="number">0</span>]&#125; = &#123;<span class="attr">name</span>:<span class="string">'troubledot'</span>,<span class="attr">age</span>:<span class="number">28</span>&#125;)</span><br><span class="line"><span class="comment">//obj = &#123;name:'troubledot'&#125;</span></span><br><span class="line"><span class="comment">//arr = [28]</span></span><br></pre></td></tr></table></figure>
+<p>对象的解构也可以指定默认值；</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> &#123;x = <span class="number">3</span>&#125; = &#123;&#125;;</span><br><span class="line">x <span class="comment">// 3</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> &#123;x, y = <span class="number">5</span>&#125; = &#123;<span class="attr">x</span>: <span class="number">1</span>&#125;;</span><br><span class="line">x <span class="comment">// 1</span></span><br><span class="line">y <span class="comment">// 5</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> &#123;<span class="attr">x</span>: y = <span class="number">3</span>&#125; = &#123;&#125;;</span><br><span class="line">y <span class="comment">// 3</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> &#123;<span class="attr">x</span>: y = <span class="number">3</span>&#125; = &#123;<span class="attr">x</span>: <span class="number">5</span>&#125;;</span><br><span class="line">y <span class="comment">// 5</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> &#123; <span class="attr">message</span>: msg = <span class="string">'Something went wrong'</span> &#125; = &#123;&#125;;</span><br><span class="line">msg <span class="comment">// "Something went wrong"</span></span><br></pre></td></tr></table></figure>
+<p>同样当对象的属性值严格等于undefined的时候，默认值生效；</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> &#123;x = <span class="number">3</span>&#125; = &#123;<span class="attr">x</span>: <span class="literal">undefined</span>&#125;;</span><br><span class="line">x <span class="comment">// 3</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> &#123;x = <span class="number">3</span>&#125; = &#123;<span class="attr">x</span>: <span class="literal">null</span>&#125;;</span><br><span class="line">x <span class="comment">// null</span></span><br></pre></td></tr></table></figure>
+<p>null不严格等于undefined，所以x不等于其默认值。</p>
+<p>解构失败，变量的值等于undefined，如果解构模式是嵌套的对象，而且子对象所在的父属性不存在，那么将会报错。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> &#123;a&#125; = &#123;<span class="attr">b</span>:<span class="number">3</span>&#125;</span><br><span class="line">a <span class="comment">//undefined</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//报错</span></span><br><span class="line"><span class="keyword">let</span> &#123;<span class="attr">name</span>:&#123;firstname&#125;&#125; = &#123;<span class="attr">age</span>:<span class="number">28</span>&#125;</span><br></pre></td></tr></table></figure>
+<p>这个报错，我们倒着看的时候会比较好理解；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let me = &#123;age:28&#125;;</span><br><span class="line">me.name = undefined;</span><br><span class="line">me.name.firstname //报错</span><br></pre></td></tr></table></figure>
+<p>由于JavaScript 引擎会把大括号包裹的部分视为一个代码块处理，所以我们在对已经声明的对象进行解构的时候需要特别注意，下面这段代码会因为把{a}当作代码块处理而发生语法错误</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a;</span><br><span class="line">&#123;a&#125; = &#123;<span class="attr">a</span>:<span class="number">20</span>&#125;</span><br><span class="line"><span class="comment">// SyntaxError: syntax error</span></span><br></pre></td></tr></table></figure>
+<p>解决这个问题我们只需要不在行首出现括号就好</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a;</span><br><span class="line">(&#123;a&#125; = &#123;<span class="attr">a</span>:<span class="number">20</span>&#125;)</span><br><span class="line"><span class="comment">// SyntaxError: syntax error</span></span><br></pre></td></tr></table></figure>
+<p>解构赋值允许等号左边的模式之中，不放置任何变量名。因此，可以写出非常古怪的赋值表达式。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(&#123;&#125; = [<span class="literal">true</span>, <span class="literal">false</span>]);</span><br><span class="line">(&#123;&#125; = <span class="string">'abc'</span>);</span><br><span class="line">(&#123;&#125; = []);</span><br></pre></td></tr></table></figure>
+<p>上面的表达式虽然毫无意义，但是语法是合法的，可以执行。</p>
+<p>对象的解构赋值可以很方便地将现有对象的方法，赋值到某个变量。</p>
+<p>我们可以这么理解</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">我：&#123;</span><br><span class="line">	姓名：张三，</span><br><span class="line">	年龄：28，</span><br><span class="line">	性别：男，</span><br><span class="line">	宠物：&#123;</span><br><span class="line">		狗：&#123;</span><br><span class="line">			名字：’土豆‘，</span><br><span class="line">			品种：’金毛‘</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;，</span><br><span class="line">	技能：写js</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 现在有一个王六</span><br><span class="line"> &#123;年龄，性别，技能&#125;  = 我</span><br><span class="line">//我们就知道王六也是个28岁的男性，也会写js 。这里相当于我们解构了年龄性别和技能</span><br><span class="line"></span><br><span class="line">&#123;宠物&#125;  = 我</span><br><span class="line"></span><br><span class="line">// 这样的话我们只解构了宠物这个属性，我们也知道王六有只宠物狗。品种和名字我们都不知道。</span><br><span class="line">&#123;</span><br><span class="line">宠物：&#123;</span><br><span class="line">		狗：&#123;</span><br><span class="line">			名字：’毛毛‘，</span><br><span class="line">			品种：’泰迪‘</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125; = 我；</span><br><span class="line">//这样的话我们就知道了王六的狗子是一只叫毛毛的泰迪。</span><br></pre></td></tr></table></figure>
+<p>这是自创的中文编程。 </p>
+<p>明白了上面的道理我们就好理解下面的代码了；</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> &#123; log, sin, cos &#125; = <span class="built_in">Math</span>;</span><br></pre></td></tr></table></figure>
+<p>这里我们给log，sin，cos赋值，分别等于Math.log，Math.sin，Math.cos，这样在使用的时候会比较方便；</p>
+<p>由于数组本质是特殊的对象，因此可以对数组进行对象属性的解构。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"><span class="keyword">let</span> &#123;<span class="number">0</span> : first, [arr.length - <span class="number">1</span>] : last&#125; = arr;</span><br><span class="line">first <span class="comment">// 1</span></span><br><span class="line">last <span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
+<h3 id="3-字符串的解构赋值"><a href="#3-字符串的解构赋值" class="headerlink" title="3.字符串的解构赋值"></a>3.字符串的解构赋值</h3><p>我们可以把字符串当作数组来处理</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> [a, b, c, d, e] = <span class="string">'hello'</span>;</span><br><span class="line">a <span class="comment">// "h"</span></span><br><span class="line">b <span class="comment">// "e"</span></span><br><span class="line">c <span class="comment">// "l"</span></span><br><span class="line">d <span class="comment">// "l"</span></span><br><span class="line">e <span class="comment">// "o"</span></span><br></pre></td></tr></table></figure>
+<p>所以类似数组的对象都有个length属性，我么也可以对其进行解构赋值</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> &#123;<span class="attr">length</span> : len&#125; = <span class="string">'hello'</span>;</span><br><span class="line">len<span class="comment">//5</span></span><br></pre></td></tr></table></figure>
+<h3 id="4-数组和布尔值的解构赋值"><a href="#4-数组和布尔值的解构赋值" class="headerlink" title="4.数组和布尔值的解构赋值"></a>4.数组和布尔值的解构赋值</h3><p>解构赋值的时候如果等号右边是布尔值和数值，会先转化为对象。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> &#123;<span class="attr">toString</span>: s&#125; = <span class="number">123</span>;</span><br><span class="line">s === <span class="built_in">Number</span>.prototype.toString <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> &#123;<span class="attr">toString</span>: s&#125; = <span class="literal">true</span>;</span><br><span class="line">s === <span class="built_in">Boolean</span>.prototype.toString <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<p>上面的这两个例子，toString是一个模式，对s解构赋值的时候我们，需要找123和true的toString属性，他们本身没有toString属性，但是他们的原型有，所以s能取到值；如果改成这样</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> &#123;<span class="attr">otherfn</span>: s&#125; = <span class="number">123</span>;</span><br><span class="line">s <span class="comment">// undefined</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> &#123;<span class="attr">otherfn</span>: s&#125; = <span class="literal">true</span>;</span><br><span class="line">s <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
+<p>这里的s就是undefined了，因为123和true都没有ohterfn属性，他们的原型也没有。这样的话下面这个例子就很好理解了</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> &#123; <span class="attr">prop</span>: x &#125; = <span class="literal">undefined</span>; <span class="comment">// TypeError</span></span><br><span class="line"><span class="keyword">let</span> &#123; <span class="attr">prop</span>: y &#125; = <span class="literal">null</span>; <span class="comment">// TypeError</span></span><br></pre></td></tr></table></figure>
+<p>null和undefined不能转换成对象，所以会报错。</p>
+<h3 id="5-函数参数的解构赋值"><a href="#5-函数参数的解构赋值" class="headerlink" title="5.函数参数的解构赋值"></a>5.函数参数的解构赋值</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">[x, y]</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> x + y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">add([<span class="number">1</span>, <span class="number">2</span>]); <span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
+<p>add的参数是一个数组，但是在执行的时候解构成了变量x和y；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[[1, 2], [3, 4]].map(([a, b]) =&gt; a + b);</span><br><span class="line">// [ 3, 7 ]</span><br></pre></td></tr></table></figure>
+<p>函数参数的解构也可以使用默认值。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">move</span>(<span class="params">&#123;x = <span class="number">0</span>, y = <span class="number">0</span>&#125; = &#123;&#125;</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> [x, y];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">move(&#123;<span class="attr">x</span>: <span class="number">3</span>, <span class="attr">y</span>: <span class="number">8</span>&#125;); <span class="comment">// [3, 8]</span></span><br><span class="line">move(&#123;<span class="attr">x</span>: <span class="number">3</span>&#125;); <span class="comment">// [3, 0]</span></span><br><span class="line">move(&#123;&#125;); <span class="comment">// [0, 0]</span></span><br><span class="line">move(); <span class="comment">// [0, 0]</span></span><br></pre></td></tr></table></figure>
+<p>上面函数的参数是一个对象，函数执行的时候对参数进行解构，如果解构失败就取默认值。</p>
+<p>注意，下面的写法会得到不一样的结果。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">move</span>(<span class="params">&#123;x, y&#125; = &#123; x: <span class="number">0</span>, y: <span class="number">0</span> &#125;</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> [x, y];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">move(&#123;<span class="attr">x</span>: <span class="number">3</span>, <span class="attr">y</span>: <span class="number">8</span>&#125;); <span class="comment">// [3, 8]</span></span><br><span class="line">move(&#123;<span class="attr">x</span>: <span class="number">3</span>&#125;); <span class="comment">// [3, undefined]</span></span><br><span class="line">move(&#123;&#125;); <span class="comment">// [undefined, undefined]</span></span><br><span class="line">move(); <span class="comment">// [0, 0]</span></span><br></pre></td></tr></table></figure>
+<p>这里的默认值是参数对象的默认值，不是x和y的默认值。</p>
+<p>move({x: 3}) 的时候其实相当于move({x: 3,y:undefined});</p>
+<p>同理 move({}); // [undefined, undefined]也就很好理解了。</p>
+<p>move()的时候，相当于参数等于undefined，此时取其默认值。 move(); // [0, 0]</p>
+<blockquote>
+<p>undefined会触发函数参数的默认值</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">1</span>, <span class="literal">undefined</span>, <span class="number">3</span>].map(<span class="function">(<span class="params">x = <span class="string">'yes'</span></span>) =&gt;</span> x);</span><br><span class="line"><span class="comment">// [ 1, 'yes', 3 ]</span></span><br></pre></td></tr></table></figure>
+<h3 id="6-圆括号问题"><a href="#6-圆括号问题" class="headerlink" title="6.圆括号问题"></a>6.圆括号问题</h3><p>解构赋值虽然很方便，但是解析起来并不容易。对于编译器来说，一个式子到底是模式，还是表达式，没有办法从一开始就知道，必须解析到（或解析不到）等号才能知道。</p>
+<p>由此带来的问题是，如果模式中出现圆括号怎么处理。ES6 的规则是，只要有可能导致解构的歧义，就不得使用圆括号。</p>
+<p>但是，这条规则实际上不那么容易辨别，处理起来相当麻烦。因此，建议只要有可能，就不要在模式中放置圆括号。</p>
+<p>-</p>
+<h4 id="不能使用圆括号的情况"><a href="#不能使用圆括号的情况" class="headerlink" title="不能使用圆括号的情况"></a>不能使用圆括号的情况</h4><p>以下三种情况解构赋值不得使用圆括号</p>
+<h5 id="1-变量声明语句"><a href="#1-变量声明语句" class="headerlink" title="1. 变量声明语句"></a>1. 变量声明语句</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 全部报错</span></span><br><span class="line"><span class="keyword">let</span> [(a)] = [<span class="number">1</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> &#123;<span class="attr">x</span>: (c)&#125; = &#123;&#125;;</span><br><span class="line"><span class="keyword">let</span> (&#123;<span class="attr">x</span>: c&#125;) = &#123;&#125;;</span><br><span class="line"><span class="keyword">let</span> &#123;(x: c)&#125; = &#123;&#125;;</span><br><span class="line"><span class="keyword">let</span> &#123;(x): c&#125; = &#123;&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> &#123; <span class="attr">o</span>: (&#123; <span class="attr">p</span>: p &#125;) &#125; = &#123; <span class="attr">o</span>: &#123; <span class="attr">p</span>: <span class="number">2</span> &#125; &#125;;</span><br></pre></td></tr></table></figure>
+<p>变量声明语句，模式不能使用小括号；</p>
+<h5 id="2-函数参数"><a href="#2-函数参数" class="headerlink" title="2.函数参数"></a>2.函数参数</h5><p>函数参数其实也属于变量声明</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 报错</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params">[(z</span>)]) </span>&#123; <span class="keyword">return</span> z; &#125;</span><br><span class="line"><span class="comment">// 报错</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params">[z,(x</span>)]) </span>&#123; <span class="keyword">return</span> x; &#125;</span><br></pre></td></tr></table></figure>
+<h5 id="3-赋值语句的模式"><a href="#3-赋值语句的模式" class="headerlink" title="3.赋值语句的模式"></a>3.赋值语句的模式</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 全部报错</span></span><br><span class="line">(&#123; <span class="attr">p</span>: a &#125;) = &#123; <span class="attr">p</span>: <span class="number">42</span> &#125;;</span><br><span class="line">([a]) = [<span class="number">5</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">// 报错</span></span><br><span class="line">[(&#123; <span class="attr">p</span>: a &#125;), &#123; <span class="attr">x</span>: c &#125;] = [&#123;&#125;, &#123;&#125;];</span><br></pre></td></tr></table></figure>
+<p>不管是整个模式放在小括号中，还是将部分模式放在小括号中都会报错</p>
+<h4 id="可以使用圆括号的情况"><a href="#可以使用圆括号的情况" class="headerlink" title="可以使用圆括号的情况"></a>可以使用圆括号的情况</h4><p>通过上面我们基本已经清楚可以使用圆括号的情况：</p>
+<blockquote>
+<p>赋值语句的非模式部分可以使用圆括号</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[(b)] = [<span class="number">3</span>]; <span class="comment">// 正确</span></span><br><span class="line">(&#123; <span class="attr">p</span>: (d) &#125; = &#123;&#125;); <span class="comment">// 正确</span></span><br><span class="line">[(<span class="built_in">parseInt</span>.prop)] = [<span class="number">3</span>]; <span class="comment">// 正确</span></span><br></pre></td></tr></table></figure>
+<p>这三句都可以执行，我们来看下，第一行模式是数组的第一个元素跟b没关系，所以可以用圆括号，第二行模式是p，所以d用圆括号没有问题，第三行跟第一行是一样的。</p>
+<h3 id="7-用途"><a href="#7-用途" class="headerlink" title="7.用途"></a>7.用途</h3><h4 id="1-交换变量的值"><a href="#1-交换变量的值" class="headerlink" title="(1) 交换变量的值"></a>(1) 交换变量的值</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> x = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">let</span> y = <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line">[x, y] = [y, x];</span><br></pre></td></tr></table></figure>
+<p>如果没有解构赋值，我们要交换变量的值需要一个中间量，但是现在可以直接解构赋值。</p>
+<h4 id="（2）从函数返回多个值"><a href="#（2）从函数返回多个值" class="headerlink" title="（2）从函数返回多个值"></a>（2）从函数返回多个值</h4><p>函数只能返回一个值，如果要返回多个值，只能将它们放在数组或对象里返回。有了解构赋值，取出这些值就非常方便</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 返回一个数组</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">example</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> [a, b, c] = example();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 返回一个对象</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">example</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    foo: <span class="number">1</span>,</span><br><span class="line">    bar: <span class="number">2</span></span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> &#123; foo, bar &#125; = example();</span><br></pre></td></tr></table></figure>
+<h4 id="（3）函数参数的定义"><a href="#（3）函数参数的定义" class="headerlink" title="（3）函数参数的定义"></a>（3）函数参数的定义</h4><p>解构赋值可以方便的将一组参数与变量名对应起来。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 参数是一组有次序的值</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params">[x, y, z]</span>) </span>&#123; ... &#125;</span><br><span class="line">f([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 参数是一组无次序的值</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params">&#123;x, y, z&#125;</span>) </span>&#123; ... &#125;</span><br><span class="line">f(&#123;<span class="attr">z</span>: <span class="number">3</span>, <span class="attr">y</span>: <span class="number">2</span>, <span class="attr">x</span>: <span class="number">1</span>&#125;);</span><br></pre></td></tr></table></figure>
+<h4 id="4）提取-JSON-数据"><a href="#4）提取-JSON-数据" class="headerlink" title="(4）提取 JSON 数据"></a>(4）提取 JSON 数据</h4><p>前后端分离的项目中，我们经常需要提取json数据的值，使用解构赋值会变得特别方便</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> jsonData = &#123;</span><br><span class="line">  id: <span class="number">42</span>,</span><br><span class="line">  status: <span class="string">"OK"</span>,</span><br><span class="line">  data: [<span class="number">867</span>, <span class="number">5309</span>]</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> &#123; id, status, <span class="attr">data</span>: number &#125; = jsonData;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(id, status, number);</span><br><span class="line"><span class="comment">// 42, "OK", [867, 5309]</span></span><br></pre></td></tr></table></figure>
+<h4 id="（5）函数参数的默认值"><a href="#（5）函数参数的默认值" class="headerlink" title="（5）函数参数的默认值"></a>（5）函数参数的默认值</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">jQuery.ajax = <span class="function"><span class="keyword">function</span> (<span class="params">url, &#123;</span></span></span><br><span class="line"><span class="function"><span class="params">  async = true,</span></span></span><br><span class="line"><span class="function"><span class="params">  beforeSend = function (</span>) </span>&#123;&#125;,</span><br><span class="line">  cache = <span class="literal">true</span>,</span><br><span class="line">  complete = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;,</span><br><span class="line">  crossDomain = <span class="literal">false</span>,</span><br><span class="line">  global = <span class="literal">true</span>,</span><br><span class="line">  <span class="comment">// ... more config</span></span><br><span class="line">&#125; = &#123;&#125;) &#123;</span><br><span class="line">  <span class="comment">// ... do stuff</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>指定参数的默认值，就避免了在函数体内部再写var foo = config.foo || ‘default foo’;这样的语句。</p>
+<h4 id="（6）遍历-Map-结构"><a href="#（6）遍历-Map-结构" class="headerlink" title="（6）遍历 Map 结构"></a>（6）遍历 Map 结构</h4><p>任何部署了 Iterator 接口的对象，都可以用for…of循环遍历。Map 结构原生支持 Iterator 接口，配合变量的解构赋值，获取键名和键值就非常方便。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> map = <span class="keyword">new</span> <span class="built_in">Map</span>();</span><br><span class="line">map.set(<span class="string">'first'</span>,<span class="string">'hello'</span>);</span><br><span class="line">map.set(<span class="string">'second'</span>,<span class="string">'world'</span>);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> [key,value] <span class="keyword">of</span> map)&#123;</span><br><span class="line">	key +<span class="string">'is'</span>+ value</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// first is hello</span></span><br><span class="line"><span class="comment">// second is world</span></span><br></pre></td></tr></table></figure>
+<p>也可以只取键和值；<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> map = <span class="keyword">new</span> <span class="built_in">Map</span>();</span><br><span class="line">map.set(<span class="string">'first'</span>,<span class="string">'hello'</span>);</span><br><span class="line">map.set(<span class="string">'second'</span>,<span class="string">'world'</span>);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> [key] <span class="keyword">of</span> map)&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(key)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> [,value] <span class="keyword">of</span> map)&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(value)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="（7）输入模块的指定方法。"><a href="#（7）输入模块的指定方法。" class="headerlink" title="（7）输入模块的指定方法。"></a>（7）输入模块的指定方法。</h4><p>加载模块时，往往需要指定输入哪些方法。解构赋值使得输入语句非常清晰。</p>
+<p>某些按需引用的方法也是这个原理</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123; SourceMapConsumer, SourceNode &#125; = <span class="built_in">require</span>(<span class="string">"source-map"</span>);</span><br><span class="line"><span class="keyword">import</span> &#123; Button, Table &#125; <span class="keyword">from</span> <span class="string">'iview'</span>;</span><br></pre></td></tr></table></figure>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Blog</a></li>
+         
+          <li><a href="https://github.com/Troubledot">Projects</a></li>
+         
+          <li><a href="/URL">LINK_NAME</a></li>
+         
+          <li><a href="/Search/">Search</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-数组的解构赋值"><span class="toc-number">1.</span> <span class="toc-text">1.数组的解构赋值</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基本用法"><span class="toc-number">1.1.</span> <span class="toc-text">基本用法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#默认值"><span class="toc-number">1.2.</span> <span class="toc-text">默认值</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-对象的解构赋值"><span class="toc-number">2.</span> <span class="toc-text">2.对象的解构赋值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-字符串的解构赋值"><span class="toc-number">3.</span> <span class="toc-text">3.字符串的解构赋值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-数组和布尔值的解构赋值"><span class="toc-number">4.</span> <span class="toc-text">4.数组和布尔值的解构赋值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-函数参数的解构赋值"><span class="toc-number">5.</span> <span class="toc-text">5.函数参数的解构赋值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-圆括号问题"><span class="toc-number">6.</span> <span class="toc-text">6.圆括号问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#不能使用圆括号的情况"><span class="toc-number">6.1.</span> <span class="toc-text">不能使用圆括号的情况</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-变量声明语句"><span class="toc-number">6.1.1.</span> <span class="toc-text">1. 变量声明语句</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-函数参数"><span class="toc-number">6.1.2.</span> <span class="toc-text">2.函数参数</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-赋值语句的模式"><span class="toc-number">6.1.3.</span> <span class="toc-text">3.赋值语句的模式</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#可以使用圆括号的情况"><span class="toc-number">6.2.</span> <span class="toc-text">可以使用圆括号的情况</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-用途"><span class="toc-number">7.</span> <span class="toc-text">7.用途</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-交换变量的值"><span class="toc-number">7.1.</span> <span class="toc-text">(1) 交换变量的值</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#（2）从函数返回多个值"><span class="toc-number">7.2.</span> <span class="toc-text">（2）从函数返回多个值</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#（3）函数参数的定义"><span class="toc-number">7.3.</span> <span class="toc-text">（3）函数参数的定义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4）提取-JSON-数据"><span class="toc-number">7.4.</span> <span class="toc-text">(4）提取 JSON 数据</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#（5）函数参数的默认值"><span class="toc-number">7.5.</span> <span class="toc-text">（5）函数参数的默认值</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#（6）遍历-Map-结构"><span class="toc-number">7.6.</span> <span class="toc-text">（6）遍历 Map 结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#（7）输入模块的指定方法。"><span class="toc-number">7.7.</span> <span class="toc-text">（7）输入模块的指定方法。</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://finding.kim/2018/12/12/系统学习ES6（变量的解构赋值）/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://finding.kim/2018/12/12/系统学习ES6（变量的解构赋值）/&text=系统学习ES6（变量的解构赋值）"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://finding.kim/2018/12/12/系统学习ES6（变量的解构赋值）/&title=系统学习ES6（变量的解构赋值）"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://finding.kim/2018/12/12/系统学习ES6（变量的解构赋值）/&is_video=false&description=系统学习ES6（变量的解构赋值）"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=系统学习ES6（变量的解构赋值）&body=Check out this article: http://finding.kim/2018/12/12/系统学习ES6（变量的解构赋值）/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://finding.kim/2018/12/12/系统学习ES6（变量的解构赋值）/&title=系统学习ES6（变量的解构赋值）"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://finding.kim/2018/12/12/系统学习ES6（变量的解构赋值）/&title=系统学习ES6（变量的解构赋值）"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://finding.kim/2018/12/12/系统学习ES6（变量的解构赋值）/&title=系统学习ES6（变量的解构赋值）"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://finding.kim/2018/12/12/系统学习ES6（变量的解构赋值）/&title=系统学习ES6（变量的解构赋值）"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://finding.kim/2018/12/12/系统学习ES6（变量的解构赋值）/&name=系统学习ES6（变量的解构赋值）&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 troubledot
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Blog</a></li>
+         
+          <li><a href="https://github.com/Troubledot">Projects</a></li>
+         
+          <li><a href="/URL">LINK_NAME</a></li>
+         
+          <li><a href="/Search/">Search</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/fontawesome-all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-86660611-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Baidu Analytics -->
+
+    <script type="text/javascript">
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?2e6da3c375c8a87f5b664cea6d4cb29c";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+<!-- Disqus Comments -->
+
+

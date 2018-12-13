@@ -8,14 +8,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="description" content="1、let命令基本用法ES6 新增了let命令，用来声明变量。它的用法类似于var，但是所声明的变量，只在let命令所在的代码块内有效。 123456&amp;#123;	var a = 1;	let b = 2;&amp;#125;a  // 1b  // ReferenceError: a is not defined. 以上分别用var和let声明了变量a和b，输出b的时候会报错，因为let声明的变量只有在">
 <meta property="og:type" content="article">
-<meta property="og:title" content="系统学习ES6一">
+<meta property="og:title" content="系统学习ES6（let和const命令）">
 <meta property="og:url" content="http://finding.kim/2018/12/03/系统学习ES6一/index.html">
 <meta property="og:site_name" content="troubledot&#39;blog">
 <meta property="og:description" content="1、let命令基本用法ES6 新增了let命令，用来声明变量。它的用法类似于var，但是所声明的变量，只在let命令所在的代码块内有效。 123456&amp;#123;	var a = 1;	let b = 2;&amp;#125;a  // 1b  // ReferenceError: a is not defined. 以上分别用var和let声明了变量a和b，输出b的时候会报错，因为let声明的变量只有在">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-12-12T01:33:30.686Z">
+<meta property="og:updated_time" content="2018-12-12T03:22:02.918Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="系统学习ES6一">
+<meta name="twitter:title" content="系统学习ES6（let和const命令）">
 <meta name="twitter:description" content="1、let命令基本用法ES6 新增了let命令，用来声明变量。它的用法类似于var，但是所声明的变量，只在let命令所在的代码块内有效。 123456&amp;#123;	var a = 1;	let b = 2;&amp;#125;a  // 1b  // ReferenceError: a is not defined. 以上分别用var和let声明了变量a和b，输出b的时候会报错，因为let声明的变量只有在">
     
     
@@ -36,7 +36,7 @@
         
     
     <!-- title -->
-    <title>系统学习ES6一</title>
+    <title>系统学习ES6（let和const命令）</title>
     <!-- styles -->
     <link rel="stylesheet" href="/css/style.css">
     <!-- persian styles -->
@@ -93,15 +93,15 @@
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://finding.kim/2018/12/03/系统学习ES6一/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://finding.kim/2018/12/03/系统学习ES6一/&text=系统学习ES6一"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://finding.kim/2018/12/03/系统学习ES6一/&title=系统学习ES6一"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://finding.kim/2018/12/03/系统学习ES6一/&is_video=false&description=系统学习ES6一"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=系统学习ES6一&body=Check out this article: http://finding.kim/2018/12/03/系统学习ES6一/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://finding.kim/2018/12/03/系统学习ES6一/&title=系统学习ES6一"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://finding.kim/2018/12/03/系统学习ES6一/&title=系统学习ES6一"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://finding.kim/2018/12/03/系统学习ES6一/&title=系统学习ES6一"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://finding.kim/2018/12/03/系统学习ES6一/&title=系统学习ES6一"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://finding.kim/2018/12/03/系统学习ES6一/&name=系统学习ES6一&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://finding.kim/2018/12/03/系统学习ES6一/&text=系统学习ES6（let和const命令）"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://finding.kim/2018/12/03/系统学习ES6一/&title=系统学习ES6（let和const命令）"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://finding.kim/2018/12/03/系统学习ES6一/&is_video=false&description=系统学习ES6（let和const命令）"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=系统学习ES6（let和const命令）&body=Check out this article: http://finding.kim/2018/12/03/系统学习ES6一/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://finding.kim/2018/12/03/系统学习ES6一/&title=系统学习ES6（let和const命令）"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://finding.kim/2018/12/03/系统学习ES6一/&title=系统学习ES6（let和const命令）"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://finding.kim/2018/12/03/系统学习ES6一/&title=系统学习ES6（let和const命令）"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://finding.kim/2018/12/03/系统学习ES6一/&title=系统学习ES6（let和const命令）"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://finding.kim/2018/12/03/系统学习ES6一/&name=系统学习ES6（let和const命令）&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -118,7 +118,7 @@
   <header>
     
     <h1 class="posttitle" itemprop="name headline">
-        系统学习ES6一
+        系统学习ES6（let和const命令）
     </h1>
 
 
@@ -325,15 +325,15 @@
     <div id="share-footer" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://finding.kim/2018/12/03/系统学习ES6一/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://finding.kim/2018/12/03/系统学习ES6一/&text=系统学习ES6一"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://finding.kim/2018/12/03/系统学习ES6一/&title=系统学习ES6一"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://finding.kim/2018/12/03/系统学习ES6一/&is_video=false&description=系统学习ES6一"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=系统学习ES6一&body=Check out this article: http://finding.kim/2018/12/03/系统学习ES6一/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://finding.kim/2018/12/03/系统学习ES6一/&title=系统学习ES6一"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://finding.kim/2018/12/03/系统学习ES6一/&title=系统学习ES6一"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://finding.kim/2018/12/03/系统学习ES6一/&title=系统学习ES6一"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://finding.kim/2018/12/03/系统学习ES6一/&title=系统学习ES6一"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://finding.kim/2018/12/03/系统学习ES6一/&name=系统学习ES6一&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://finding.kim/2018/12/03/系统学习ES6一/&text=系统学习ES6（let和const命令）"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://finding.kim/2018/12/03/系统学习ES6一/&title=系统学习ES6（let和const命令）"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://finding.kim/2018/12/03/系统学习ES6一/&is_video=false&description=系统学习ES6（let和const命令）"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=系统学习ES6（let和const命令）&body=Check out this article: http://finding.kim/2018/12/03/系统学习ES6一/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://finding.kim/2018/12/03/系统学习ES6一/&title=系统学习ES6（let和const命令）"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://finding.kim/2018/12/03/系统学习ES6一/&title=系统学习ES6（let和const命令）"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://finding.kim/2018/12/03/系统学习ES6一/&title=系统学习ES6（let和const命令）"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://finding.kim/2018/12/03/系统学习ES6一/&title=系统学习ES6（let和const命令）"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://finding.kim/2018/12/03/系统学习ES6一/&name=系统学习ES6（let和const命令）&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
