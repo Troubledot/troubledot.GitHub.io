@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="1.函数参数的默认值基本用法es6之前，函数的参数不能给默认值的，如果一定要给，只能用变通的方法； 1234567function log(x,y)&amp;#123;	y = y||&amp;apos;Word&amp;apos;;	console.log(x,y)&amp;#125;log(&amp;apos;Hello&amp;apos;) // Hello Worldlog(&amp;apos;Hello&amp;apos;, &amp;apos;China&amp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="函数的扩展">
+<meta property="og:url" content="http://finding.kim/2019/01/16/函数的扩展/index.html">
+<meta property="og:site_name" content="troubledot&#39;blog">
+<meta property="og:description" content="1.函数参数的默认值基本用法es6之前，函数的参数不能给默认值的，如果一定要给，只能用变通的方法； 1234567function log(x,y)&amp;#123;	y = y||&amp;apos;Word&amp;apos;;	console.log(x,y)&amp;#125;log(&amp;apos;Hello&amp;apos;) // Hello Worldlog(&amp;apos;Hello&amp;apos;, &amp;apos;China&amp;">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-01-16T07:05:04.578Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="函数的扩展">
+<meta name="twitter:description" content="1.函数参数的默认值基本用法es6之前，函数的参数不能给默认值的，如果一定要给，只能用变通的方法； 1234567function log(x,y)&amp;#123;	y = y||&amp;apos;Word&amp;apos;;	console.log(x,y)&amp;#125;log(&amp;apos;Hello&amp;apos;) // Hello Worldlog(&amp;apos;Hello&amp;apos;, &amp;apos;China&amp;">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/logo.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/logo.png">
+          
+        
+    
+    <!-- title -->
+    <title>函数的扩展</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Blog</a></li>
+         
+          <li><a href="https://github.com/Troubledot">Projects</a></li>
+         
+          <li><a href="/URL">LINK_NAME</a></li>
+         
+          <li><a href="/Search/">Search</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2019/02/25/三十出头的你还想有个人依靠？/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2019/01/07/系统学习ES6（数值的扩展）/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://finding.kim/2019/01/16/函数的扩展/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://finding.kim/2019/01/16/函数的扩展/&text=函数的扩展"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://finding.kim/2019/01/16/函数的扩展/&title=函数的扩展"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://finding.kim/2019/01/16/函数的扩展/&is_video=false&description=函数的扩展"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=函数的扩展&body=Check out this article: http://finding.kim/2019/01/16/函数的扩展/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://finding.kim/2019/01/16/函数的扩展/&title=函数的扩展"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://finding.kim/2019/01/16/函数的扩展/&title=函数的扩展"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://finding.kim/2019/01/16/函数的扩展/&title=函数的扩展"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://finding.kim/2019/01/16/函数的扩展/&title=函数的扩展"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://finding.kim/2019/01/16/函数的扩展/&name=函数的扩展&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-函数参数的默认值"><span class="toc-number">1.</span> <span class="toc-text">1.函数参数的默认值</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基本用法"><span class="toc-number">1.1.</span> <span class="toc-text">基本用法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#与解构赋值默认值结合使用"><span class="toc-number">1.2.</span> <span class="toc-text">与解构赋值默认值结合使用</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        函数的扩展
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">troubledot'blog</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2019-01-16T06:48:13.000Z" itemprop="datePublished">2019-01-16</time>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h3 id="1-函数参数的默认值"><a href="#1-函数参数的默认值" class="headerlink" title="1.函数参数的默认值"></a>1.函数参数的默认值</h3><h4 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h4><p>es6之前，函数的参数不能给默认值的，如果一定要给，只能用变通的方法；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function log(x,y)&#123;</span><br><span class="line">	y = y||&apos;Word&apos;;</span><br><span class="line">	console.log(x,y)</span><br><span class="line">&#125;</span><br><span class="line">log(&apos;Hello&apos;) // Hello World</span><br><span class="line">log(&apos;Hello&apos;, &apos;China&apos;) // Hello China</span><br><span class="line">log(&apos;Hello&apos;, &apos;&apos;) // Hello World</span><br></pre></td></tr></table></figure>
+<p>这样的问题就在于如果y是一个boll值为false的值，那么他就会取到默认值。就像上面最后一行代码，我们预期输出的应该是‘Hello ’，但是因为我们给y赋的值对应的布尔值为false，所以他最后读了默认值World。这里我们就需要额外判断一次y是否被赋值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if (typeof y === &apos;undefined&apos;) &#123;</span><br><span class="line">  y = &apos;World&apos;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>但是现在es6解决了这个问题，我们可以在定义参数的时候直接为其赋一个默认值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function log(x, y = &apos;World&apos;) &#123;</span><br><span class="line">  console.log(x, y);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">log(&apos;Hello&apos;) // Hello World</span><br><span class="line">log(&apos;Hello&apos;, &apos;China&apos;) // Hello China</span><br><span class="line">log(&apos;Hello&apos;, &apos;&apos;) // Hello</span><br></pre></td></tr></table></figure>
+<p>这样的写法比较自然也符合我们正常的思维。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function Point(x = 0, y = 0) &#123;</span><br><span class="line">  this.x = x;</span><br><span class="line">  this.y = y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const p = new Point();</span><br><span class="line">p // &#123; x: 0, y: 0 &#125;</span><br></pre></td></tr></table></figure>
+<p>除了简洁，ES6 的写法还有两个好处：首先，阅读代码的人，可以立刻意识到哪些参数是可以省略的，不用查看函数体或文档；其次，有利于将来的代码优化，即使未来的版本在对外接口中，彻底拿掉这个参数，也不会导致以前的代码无法运行。</p>
+<p>参数变量是默认声明的，所以不能用let或const再次声明。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function foo(x = 5) &#123;</span><br><span class="line">  let x = 1; // error</span><br><span class="line">  const x = 2; // error</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面代码中，参数变量x是默认声明的，在函数体中，不能用let或const再次声明，否则会报错。</p>
+<p>使用参数默认值时，函数不能有同名参数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">// 不报错</span><br><span class="line">function foo(x, x, y) &#123;</span><br><span class="line">  // ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 报错</span><br><span class="line">function foo(x, x, y = 1) &#123;</span><br><span class="line">  // ...</span><br><span class="line">&#125;</span><br><span class="line">// SyntaxError: Duplicate parameter name not allowed in this context</span><br></pre></td></tr></table></figure>
+<p>另外，一个容易忽略的地方是，参数默认值不是传值的，而是每次都重新计算默认值表达式的值。也就是说，参数默认值是惰性求值的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">let x = 99;</span><br><span class="line">function foo(p = x + 1) &#123;</span><br><span class="line">  console.log(p);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">foo() // 100</span><br><span class="line"></span><br><span class="line">x = 100;</span><br><span class="line">foo() // 101</span><br></pre></td></tr></table></figure>
+<p>上面代码中，参数p的默认值是x + 1。这时，每次调用函数foo，都会重新计算x + 1，而不是默认p等于 100。</p>
+<h4 id="与解构赋值默认值结合使用"><a href="#与解构赋值默认值结合使用" class="headerlink" title="与解构赋值默认值结合使用"></a>与解构赋值默认值结合使用</h4><p>参数默认值可以和解构赋值的默认值结合起来使用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function foo(&#123;x, y = 5&#125;) &#123;</span><br><span class="line">  console.log(x, y);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">foo(&#123;&#125;) // undefined 5</span><br><span class="line">foo(&#123;x: 1&#125;) // 1 5</span><br><span class="line">foo(&#123;x: 1, y: 2&#125;) // 1 2</span><br><span class="line">foo() // TypeError: Cannot read property &apos;x&apos; of undefined</span><br></pre></td></tr></table></figure>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Blog</a></li>
+         
+          <li><a href="https://github.com/Troubledot">Projects</a></li>
+         
+          <li><a href="/URL">LINK_NAME</a></li>
+         
+          <li><a href="/Search/">Search</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-函数参数的默认值"><span class="toc-number">1.</span> <span class="toc-text">1.函数参数的默认值</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基本用法"><span class="toc-number">1.1.</span> <span class="toc-text">基本用法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#与解构赋值默认值结合使用"><span class="toc-number">1.2.</span> <span class="toc-text">与解构赋值默认值结合使用</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://finding.kim/2019/01/16/函数的扩展/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://finding.kim/2019/01/16/函数的扩展/&text=函数的扩展"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://finding.kim/2019/01/16/函数的扩展/&title=函数的扩展"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://finding.kim/2019/01/16/函数的扩展/&is_video=false&description=函数的扩展"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=函数的扩展&body=Check out this article: http://finding.kim/2019/01/16/函数的扩展/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://finding.kim/2019/01/16/函数的扩展/&title=函数的扩展"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://finding.kim/2019/01/16/函数的扩展/&title=函数的扩展"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://finding.kim/2019/01/16/函数的扩展/&title=函数的扩展"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://finding.kim/2019/01/16/函数的扩展/&title=函数的扩展"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://finding.kim/2019/01/16/函数的扩展/&name=函数的扩展&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 troubledot
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Blog</a></li>
+         
+          <li><a href="https://github.com/Troubledot">Projects</a></li>
+         
+          <li><a href="/URL">LINK_NAME</a></li>
+         
+          <li><a href="/Search/">Search</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/fontawesome-all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-86660611-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Baidu Analytics -->
+
+    <script type="text/javascript">
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?2e6da3c375c8a87f5b664cea6d4cb29c";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+<!-- Disqus Comments -->
+
+
