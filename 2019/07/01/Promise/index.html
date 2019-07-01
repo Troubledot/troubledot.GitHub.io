@@ -6,18 +6,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="Promise作为es6中出现的新概念，改变了js的异步编程，现代前端的大多数异步请求都是通过Promise实现的，fetch这个web api也是基于Promise实现的，这里不得简述一下之前统治JS异步编程的回调函数，回调函数有什么缺点，Promise又是怎么改善这些缺点 ####回调函数 js一开始的作用就是操作dom元素，如果多线程改变dom很可能会导致界面紊乱，所以js一开始的设计就是单">
+    <meta name="description" content="Promise作为es6中出现的新概念，改变了js的异步编程，现代前端的大多数异步请求都是通过Promise实现的，fetch这个web api也是基于Promise实现的，这里不得简述一下之前统治JS异步编程的回调函数，回调函数有什么缺点，Promise又是怎么改善这些缺点 回调函数js一开始的作用就是操作dom元素，如果多线程改变dom很可能会导致界面紊乱，所以js一开始的设计就是单线程的，但">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Promise">
 <meta property="og:url" content="http://finding.kim/2019/07/01/Promise/index.html">
 <meta property="og:site_name" content="troubledot&#39;blog">
-<meta property="og:description" content="Promise作为es6中出现的新概念，改变了js的异步编程，现代前端的大多数异步请求都是通过Promise实现的，fetch这个web api也是基于Promise实现的，这里不得简述一下之前统治JS异步编程的回调函数，回调函数有什么缺点，Promise又是怎么改善这些缺点 ####回调函数 js一开始的作用就是操作dom元素，如果多线程改变dom很可能会导致界面紊乱，所以js一开始的设计就是单">
+<meta property="og:description" content="Promise作为es6中出现的新概念，改变了js的异步编程，现代前端的大多数异步请求都是通过Promise实现的，fetch这个web api也是基于Promise实现的，这里不得简述一下之前统治JS异步编程的回调函数，回调函数有什么缺点，Promise又是怎么改善这些缺点 回调函数js一开始的作用就是操作dom元素，如果多线程改变dom很可能会导致界面紊乱，所以js一开始的设计就是单线程的，但">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://res.troubledot.cn/promise.png">
-<meta property="og:updated_time" content="2019-07-01T10:13:05.763Z">
+<meta property="og:updated_time" content="2019-07-01T10:29:33.917Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Promise">
-<meta name="twitter:description" content="Promise作为es6中出现的新概念，改变了js的异步编程，现代前端的大多数异步请求都是通过Promise实现的，fetch这个web api也是基于Promise实现的，这里不得简述一下之前统治JS异步编程的回调函数，回调函数有什么缺点，Promise又是怎么改善这些缺点 ####回调函数 js一开始的作用就是操作dom元素，如果多线程改变dom很可能会导致界面紊乱，所以js一开始的设计就是单">
+<meta name="twitter:description" content="Promise作为es6中出现的新概念，改变了js的异步编程，现代前端的大多数异步请求都是通过Promise实现的，fetch这个web api也是基于Promise实现的，这里不得简述一下之前统治JS异步编程的回调函数，回调函数有什么缺点，Promise又是怎么改善这些缺点 回调函数js一开始的作用就是操作dom元素，如果多线程改变dom很可能会导致界面紊乱，所以js一开始的设计就是单线程的，但">
 <meta name="twitter:image" content="http://res.troubledot.cn/promise.png">
     
     
@@ -106,7 +106,7 @@
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#1、多重嵌套导致回调地狱"><span class="toc-number">1.</span> <span class="toc-text">1、多重嵌套导致回调地狱</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2、代码跳跃，不符合人类思维模式"><span class="toc-number">2.</span> <span class="toc-text">2、代码跳跃，不符合人类思维模式</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3、信任问题，不能把回调完全交给第三方来执行，因为我们不知道他到底如何来执行；"><span class="toc-number">3.</span> <span class="toc-text">3、信任问题，不能把回调完全交给第三方来执行，因为我们不知道他到底如何来执行；</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4、第三方库可能没有提供错误回调-catch"><span class="toc-number">4.</span> <span class="toc-text">4、第三方库可能没有提供错误回调 catch</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5、不清楚回调是否是异步的"><span class="toc-number">5.</span> <span class="toc-text">5、不清楚回调是否是异步的</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#回调函数"><span class="toc-number">1.</span> <span class="toc-text">回调函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Promise"><span class="toc-number">2.</span> <span class="toc-text">Promise</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1、多重嵌套导致回调地狱"><span class="toc-number">2.0.1.</span> <span class="toc-text">1、多重嵌套导致回调地狱</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2、代码跳跃，不符合人类思维模式"><span class="toc-number">2.0.2.</span> <span class="toc-text">2、代码跳跃，不符合人类思维模式</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3、信任问题，不能把回调完全交给第三方来执行，因为我们不知道他到底如何来执行；"><span class="toc-number">2.0.3.</span> <span class="toc-text">3、信任问题，不能把回调完全交给第三方来执行，因为我们不知道他到底如何来执行；</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4、第三方库可能没有提供错误回调-catch"><span class="toc-number">2.0.4.</span> <span class="toc-text">4、第三方库可能没有提供错误回调 catch</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5、不清楚回调是否是异步的"><span class="toc-number">2.0.5.</span> <span class="toc-text">5、不清楚回调是否是异步的</span></a></li></ol></li></ol></li></ol>
     </div>
   </span>
 </div>
@@ -141,8 +141,7 @@
 
   <div class="content" itemprop="articleBody">
     <p>Promise作为es6中出现的新概念，改变了js的异步编程，现代前端的大多数异步请求都是通过Promise实现的，fetch这个web api也是基于Promise实现的，这里不得简述一下之前统治JS异步编程的回调函数，回调函数有什么缺点，Promise又是怎么改善这些缺点</p>
-<p>####回调函数</p>
-<p>js一开始的作用就是操作dom元素，如果多线程改变dom很可能会导致界面紊乱，所以js一开始的设计就是单线程的，但是浏览器是多线程的，这使得JS同时具有异步的操作，即定时器，请求，事件监听等，而这个时候就需要一套事件的处理机制去决定这些事件的顺序，即Event Loop（事件循环），这里不会详细讲解事件循环，只需要知道，前端发出的请求，一般都是会进入浏览器的http请求线程，等到收到响应的时候会通过回调函数推入异步队列，等处理完主线程的任务会读取异步队列中任务，执行回调</p>
+<h3 id="回调函数"><a href="#回调函数" class="headerlink" title="回调函数"></a>回调函数</h3><p>js一开始的作用就是操作dom元素，如果多线程改变dom很可能会导致界面紊乱，所以js一开始的设计就是单线程的，但是浏览器是多线程的，这使得JS同时具有异步的操作，即定时器，请求，事件监听等，而这个时候就需要一套事件的处理机制去决定这些事件的顺序，即Event Loop（事件循环），这里不会详细讲解事件循环，只需要知道，前端发出的请求，一般都是会进入浏览器的http请求线程，等到收到响应的时候会通过回调函数推入异步队列，等处理完主线程的任务会读取异步队列中任务，执行回调</p>
 <p>在《你不知道的JavaScript》下卷中，这么介绍</p>
 <p>使用回调函数处理异步请求相当于把你的回调函数置于了一个黑盒，虽然你声明了等到收到响应后执行你提供的回调函数,可是你并不知道这个第三方库会在什么时候具体会怎么执行回调函数</p>
 <p>使用第三方的请求库你可能会这么写:</p>
@@ -159,8 +158,7 @@
 <li>不清楚回调是否都是异步调用的（可以同步调用ajax，在收到响应前会阻塞整个线程，会陷入假死状态，很不推荐。）</li>
 </ol>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xhr.open(<span class="string">"GET"</span>,<span class="string">"/try/ajax/ajax_info.txt"</span>,<span class="literal">false</span>); <span class="comment">//通过设置第三个async为false可以同步调用ajax</span></span><br></pre></td></tr></table></figure>
-<p>####Promise</p>
-<p>针对回调函数函数的这么多缺点，Promis应运而生，Promise是一个构造函数，通过new关键字来创建一个Promise实例，来看下Promise是如何解决回调函数的这些缺点的。</p>
+<h3 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h3><p>针对回调函数函数的这么多缺点，Promis应运而生，Promise是一个构造函数，通过new关键字来创建一个Promise实例，来看下Promise是如何解决回调函数的这些缺点的。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> promise = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>)=&gt;</span>&#123;</span><br><span class="line">  setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    resolve(<span class="string">'I have been resolved'</span>)</span><br><span class="line">  &#125;, <span class="number">2000</span>);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">promise.then(<span class="function"><span class="params">res</span>=&gt;</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(res) <span class="comment">//两秒后打印字符串</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <p><strong>Promise并不是回调函数的衍生，而是两个概念，所以需要将之前的回调函数改为支持Promise的版本，这个过程成为”提升”，或者”promisory”，现代MVVM框架常用的第三方请求库axios就是一个典型的例子，另外nodejs中也有bluebird，Q等</strong></p>
 <h5 id="1、多重嵌套导致回调地狱"><a href="#1、多重嵌套导致回调地狱" class="headerlink" title="1、多重嵌套导致回调地狱"></a>1、多重嵌套导致回调地狱</h5><p>Promise在设计的时候引入了链式调用的概念，每个then方法同是也是一个Promise，所以只要你愿意可以一直then下去。</p>
@@ -227,7 +225,7 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#1、多重嵌套导致回调地狱"><span class="toc-number">1.</span> <span class="toc-text">1、多重嵌套导致回调地狱</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2、代码跳跃，不符合人类思维模式"><span class="toc-number">2.</span> <span class="toc-text">2、代码跳跃，不符合人类思维模式</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3、信任问题，不能把回调完全交给第三方来执行，因为我们不知道他到底如何来执行；"><span class="toc-number">3.</span> <span class="toc-text">3、信任问题，不能把回调完全交给第三方来执行，因为我们不知道他到底如何来执行；</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4、第三方库可能没有提供错误回调-catch"><span class="toc-number">4.</span> <span class="toc-text">4、第三方库可能没有提供错误回调 catch</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5、不清楚回调是否是异步的"><span class="toc-number">5.</span> <span class="toc-text">5、不清楚回调是否是异步的</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#回调函数"><span class="toc-number">1.</span> <span class="toc-text">回调函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Promise"><span class="toc-number">2.</span> <span class="toc-text">Promise</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1、多重嵌套导致回调地狱"><span class="toc-number">2.0.1.</span> <span class="toc-text">1、多重嵌套导致回调地狱</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2、代码跳跃，不符合人类思维模式"><span class="toc-number">2.0.2.</span> <span class="toc-text">2、代码跳跃，不符合人类思维模式</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3、信任问题，不能把回调完全交给第三方来执行，因为我们不知道他到底如何来执行；"><span class="toc-number">2.0.3.</span> <span class="toc-text">3、信任问题，不能把回调完全交给第三方来执行，因为我们不知道他到底如何来执行；</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4、第三方库可能没有提供错误回调-catch"><span class="toc-number">2.0.4.</span> <span class="toc-text">4、第三方库可能没有提供错误回调 catch</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5、不清楚回调是否是异步的"><span class="toc-number">2.0.5.</span> <span class="toc-text">5、不清楚回调是否是异步的</span></a></li></ol></li></ol></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">
