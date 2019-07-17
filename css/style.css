@@ -1099,17 +1099,22 @@ article .content blockquote {
   color: #2bbc8a;
   quotes: "\201C" "\201D" "\2018" "\2019";
   font-weight: bold;
+  position: relative;
 }
 article .content blockquote p {
   margin: 0;
+  padding-left: 10px;
 }
 article .content blockquote:before {
   margin-right: 0.25em;
-  color: #2bbc8a;
-  content: "\201C";
-  vertical-align: -0.4em;
-  font-size: 2em;
-  line-height: 0.1em;
+  background: #2bbc8a;
+  content: "";
+  width: 3px;
+  height: 1.6em;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  margin-top: -0.8em;
 }
 article .content blockquote footer {
   margin: line-height 0;
