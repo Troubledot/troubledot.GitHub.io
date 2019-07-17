@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="循环队列是一种线性数据结构，其操作基于FIFO（先进先出）原则并且队尾被连接在队首形成一个循环。它也被称为“环形缓冲器”。循环队列的一个好处是我们可以利用这个队列之前用过的空间。在一个普通队列里面，一旦队列满了，我们就不能再插入元素，即使再队列前面还有空间。但是在循环队列里面，我们就能继续利用前面的这些空间去存储新的值。 设计一个队列，实现应该支持一下操作：   MyCircularQueue(k">
+<meta name="keywords" content="js 算法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="js设计循环队列">
+<meta property="og:url" content="http://finding.kim/2019/07/17/js设计循环队列/index.html">
+<meta property="og:site_name" content="troubledot&#39;blog">
+<meta property="og:description" content="循环队列是一种线性数据结构，其操作基于FIFO（先进先出）原则并且队尾被连接在队首形成一个循环。它也被称为“环形缓冲器”。循环队列的一个好处是我们可以利用这个队列之前用过的空间。在一个普通队列里面，一旦队列满了，我们就不能再插入元素，即使再队列前面还有空间。但是在循环队列里面，我们就能继续利用前面的这些空间去存储新的值。 设计一个队列，实现应该支持一下操作：   MyCircularQueue(k">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-07-17T03:20:25.430Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="js设计循环队列">
+<meta name="twitter:description" content="循环队列是一种线性数据结构，其操作基于FIFO（先进先出）原则并且队尾被连接在队首形成一个循环。它也被称为“环形缓冲器”。循环队列的一个好处是我们可以利用这个队列之前用过的空间。在一个普通队列里面，一旦队列满了，我们就不能再插入元素，即使再队列前面还有空间。但是在循环队列里面，我们就能继续利用前面的这些空间去存储新的值。 设计一个队列，实现应该支持一下操作：   MyCircularQueue(k">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/logo.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/logo.png">
+          
+        
+    
+    <!-- title -->
+    <title>js设计循环队列</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Blog</a></li>
+         
+          <li><a href="https://github.com/Troubledot">Projects</a></li>
+         
+          <li><a href="/URL">LINK_NAME</a></li>
+         
+          <li><a href="/Search/">Search</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/2019/07/01/Promise/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://finding.kim/2019/07/17/js设计循环队列/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://finding.kim/2019/07/17/js设计循环队列/&text=js设计循环队列"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://finding.kim/2019/07/17/js设计循环队列/&title=js设计循环队列"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://finding.kim/2019/07/17/js设计循环队列/&is_video=false&description=js设计循环队列"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=js设计循环队列&body=Check out this article: http://finding.kim/2019/07/17/js设计循环队列/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://finding.kim/2019/07/17/js设计循环队列/&title=js设计循环队列"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://finding.kim/2019/07/17/js设计循环队列/&title=js设计循环队列"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://finding.kim/2019/07/17/js设计循环队列/&title=js设计循环队列"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://finding.kim/2019/07/17/js设计循环队列/&title=js设计循环队列"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://finding.kim/2019/07/17/js设计循环队列/&name=js设计循环队列&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        js设计循环队列
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">troubledot'blog</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2019-07-17T01:21:36.000Z" itemprop="datePublished">2019-07-17</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/js-算法/">js 算法</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>循环队列是一种线性数据结构，其操作基于FIFO（先进先出）原则并且队尾被连接在队首形成一个循环。它也被称为“环形缓冲器”。循环队列的一个好处是我们可以利用这个队列之前用过的空间。在一个普通队列里面，一旦队列满了，我们就不能再插入元素，即使再队列前面还有空间。但是在循环队列里面，我们就能继续利用前面的这些空间去存储新的值。</p>
+<p>设计一个队列，实现应该支持一下操作： </p>
+<ul>
+<li><strong>MyCircularQueue(k)</strong>：构造器，设置队列长度为k。</li>
+<li><strong>Front</strong>：从队首获取元素，如果队列为空则返回-1。</li>
+<li><strong>Rear</strong>：从队尾获取元素，如果队列为空则返回-1。</li>
+<li><strong>enQueue(value)</strong>：向循环队列插入一个元素。如果成功则返回真。</li>
+<li><strong>deQueue()</strong>：从循环队列中删除一个元素，如果成功则返回真。</li>
+<li><strong>isEmpty()</strong>：判断队列是否为空。</li>
+<li><strong>isFull()</strong>：判断队列是否满了。</li>
+</ul>
+<blockquote>
+<p>示例</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">MycircularQueue  circularQueue = <span class="keyword">new</span> MrcircularQueue(<span class="number">3</span>)    <span class="comment">//设置队列长度为3</span></span><br><span class="line">circularQueue.enQueue(<span class="number">1</span>)	<span class="comment">//向队列中插入1 返回true</span></span><br><span class="line">circularQueue.enQueue(<span class="number">2</span>)  <span class="comment">//向队列中插入2 返回true</span></span><br><span class="line">circularQueue.enQueue(<span class="number">3</span>)  <span class="comment">//向队列中插入3 返回true</span></span><br><span class="line">circularQueue.enQueue(<span class="number">4</span>)  <span class="comment">//返回false因为队列已经满了</span></span><br><span class="line">circularQueue.Rear()		<span class="comment">//返回3</span></span><br><span class="line">circularQueue.isFull()		<span class="comment">//返回true</span></span><br><span class="line">circularQueue.deQueue()		<span class="comment">//返回true从队首删掉一个元素</span></span><br><span class="line">circularQueue.enQueue(<span class="number">4</span>)	<span class="comment">//像队列中新增一个元素，因为之前删掉了一个元素，所以队列中有位置可以插入，返回true</span></span><br><span class="line">circularQueue.Rear()		<span class="comment">//返回4</span></span><br></pre></td></tr></table></figure>
+<p>下面是js代码实现：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> MycircularQueue = <span class="function"><span class="keyword">function</span>(<span class="params">k</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.size = k</span><br><span class="line">	<span class="keyword">this</span>.head = <span class="number">-1</span></span><br><span class="line">	<span class="keyword">this</span>.tail = <span class="number">-1</span></span><br><span class="line">	<span class="keyword">this</span>.data = []</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">MycircularQueue.prototype.enQueue(value)&#123;</span><br><span class="line">	<span class="keyword">if</span> (<span class="keyword">this</span>.isFull())&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (<span class="keyword">this</span>.isEmpty())&#123;</span><br><span class="line">		<span class="keyword">this</span>.head = <span class="number">0</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">this</span>.tail = (<span class="keyword">this</span>.tail+<span class="number">1</span>)%<span class="keyword">this</span>.size</span><br><span class="line">	<span class="keyword">this</span>.data[<span class="keyword">this</span>.tail] = value</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">MycircularQueue.prototype.deQueue()&#123;</span><br><span class="line">	<span class="keyword">if</span> (!<span class="keyword">this</span>.isEmpty())&#123;</span><br><span class="line">		<span class="keyword">if</span>(<span class="keyword">this</span>.head===<span class="keyword">this</span>.tail)&#123;</span><br><span class="line">			<span class="keyword">this</span>.head = <span class="number">-1</span></span><br><span class="line">			<span class="keyword">this</span>.tail = <span class="number">-1</span></span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="keyword">this</span>.head = (<span class="keyword">this</span>.head+<span class="number">1</span>)%<span class="keyword">this</span>.size</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">MycircularQueue.prototype.Front()&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">this</span>.isEmpty()?<span class="number">-1</span>:<span class="keyword">this</span>.data[<span class="keyword">this</span>.head]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">MycircularQueue.prototype.Rear()&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">this</span>.isEmpty()?<span class="number">-1</span>:<span class="keyword">this</span>.data[<span class="keyword">this</span>.tail]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">MycircularQueue.prototype.isFull()&#123;</span><br><span class="line">	<span class="keyword">return</span> (<span class="keyword">this</span>.tail+<span class="number">1</span>)%<span class="keyword">this</span>.size === <span class="keyword">this</span>.head</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">MycircularQueue.prototype.isEmpty()&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">this</span>.head === <span class="number">-1</span> &amp;&amp; <span class="keyword">this</span>.tail === <span class="number">-1</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">MycircularQueue.prototype.isEmpty()&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">this</span>.head === <span class="keyword">this</span>.tail === <span class="number">-1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这其中有几个地方有过疑惑，一个是Front和Rear那里<br>在取Front和Rear的时候，我判断了队列是否为空，空则返回-1，否则返回对应值，如下。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">MycircularQueue.prototype.Front()&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">this</span>.isEmpty()?<span class="number">-1</span>:<span class="keyword">this</span>.data[<span class="keyword">this</span>.head]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我看了有些人是这么写的，Front的时候判断head值是否等于-1，Rear的时候判断tail是否为-1，也就是判断是否有队首或者队尾，有则返回，无则返回-1。诚然，在这道题下，两种方法其实并无区别，因为队列是根本不可能存在有头无尾或者有尾无头的情况的。但是从这个区别中也能反应出一种思维习惯，就是编程中比较常见的思想：模块和独立。队首我们只关心head，队尾只关心tail，这样能保证所有的方法高度独立，是一个值得去刻意培养的习惯。代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">MycircularQueue.prototype.Front()&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">this</span>.head === <span class="number">-1</span>?<span class="number">-1</span>:<span class="keyword">this</span>.data[<span class="keyword">this</span>.head]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Rear同理。</p>
+<p>还有一处区别就是：我把普通的&amp;&amp;写成了连等的形式。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">MycircularQueue.prototype.isEmpty()&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">this</span>.head === <span class="keyword">this</span>.tail === <span class="number">-1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>还有一个地方就是isFull的时候，因为自己初识算法，思维比较固化。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">MycircularQueue.prototype.isFull()&#123;</span><br><span class="line">	return this.tail+1 = this.size</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>现在回头来看错误就比较明显了，循环算法自然head不可能永远在第一位了。</p>
+<p>以上就是如何用js实现一个循环队列。 共勉</p>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Blog</a></li>
+         
+          <li><a href="https://github.com/Troubledot">Projects</a></li>
+         
+          <li><a href="/URL">LINK_NAME</a></li>
+         
+          <li><a href="/Search/">Search</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://finding.kim/2019/07/17/js设计循环队列/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://finding.kim/2019/07/17/js设计循环队列/&text=js设计循环队列"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://finding.kim/2019/07/17/js设计循环队列/&title=js设计循环队列"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://finding.kim/2019/07/17/js设计循环队列/&is_video=false&description=js设计循环队列"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=js设计循环队列&body=Check out this article: http://finding.kim/2019/07/17/js设计循环队列/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://finding.kim/2019/07/17/js设计循环队列/&title=js设计循环队列"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://finding.kim/2019/07/17/js设计循环队列/&title=js设计循环队列"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://finding.kim/2019/07/17/js设计循环队列/&title=js设计循环队列"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://finding.kim/2019/07/17/js设计循环队列/&title=js设计循环队列"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://finding.kim/2019/07/17/js设计循环队列/&name=js设计循环队列&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 troubledot
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Blog</a></li>
+         
+          <li><a href="https://github.com/Troubledot">Projects</a></li>
+         
+          <li><a href="/URL">LINK_NAME</a></li>
+         
+          <li><a href="/Search/">Search</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/fontawesome-all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-86660611-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Baidu Analytics -->
+
+    <script type="text/javascript">
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?2e6da3c375c8a87f5b664cea6d4cb29c";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+<!-- Disqus Comments -->
+
+
