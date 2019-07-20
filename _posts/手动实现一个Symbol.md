@@ -32,4 +32,3 @@ var s2 = Symbol('s2')
 console.log(s1))  // Symbol(s1)
 console.log(s2)). // Symbol(s2)
 ```
-### 测试协同
