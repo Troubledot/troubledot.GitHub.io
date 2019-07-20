@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="我打算在后面持续更新下leetCode，希望能再坚持成功一件事情，这是第一题，直接开始。 题目：给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那两个整数，并返回他们的数组下标。 你可以假设每种输入只会对应一个答案。但是，你不能重复利用这个数组中同样的元素。 示例: 1234给定 nums = [2, 7, 11, 15], target = 9因为 nums">
+<meta name="keywords" content="算法,leetCode,easy">
+<meta property="og:type" content="article">
+<meta property="og:title" content="leetCode1——两数之和">
+<meta property="og:url" content="http://finding.kim/2019/07/20/leetCode1——两数之和/index.html">
+<meta property="og:site_name" content="troubledot&#39;blog">
+<meta property="og:description" content="我打算在后面持续更新下leetCode，希望能再坚持成功一件事情，这是第一题，直接开始。 题目：给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那两个整数，并返回他们的数组下标。 你可以假设每种输入只会对应一个答案。但是，你不能重复利用这个数组中同样的元素。 示例: 1234给定 nums = [2, 7, 11, 15], target = 9因为 nums">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://res.troubledot.cn/twosum.png">
+<meta property="og:updated_time" content="2019-07-20T10:27:42.013Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="leetCode1——两数之和">
+<meta name="twitter:description" content="我打算在后面持续更新下leetCode，希望能再坚持成功一件事情，这是第一题，直接开始。 题目：给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那两个整数，并返回他们的数组下标。 你可以假设每种输入只会对应一个答案。但是，你不能重复利用这个数组中同样的元素。 示例: 1234给定 nums = [2, 7, 11, 15], target = 9因为 nums">
+<meta name="twitter:image" content="http://res.troubledot.cn/twosum.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/logo.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/logo.png">
+          
+        
+    
+    <!-- title -->
+    <title>leetCode1——两数之和</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Blog</a></li>
+         
+          <li><a href="https://github.com/Troubledot">Projects</a></li>
+         
+          <li><a href="/URL">LINK_NAME</a></li>
+         
+          <li><a href="/Search/">Search</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/2019/07/18/手动实现一个Symbol/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://finding.kim/2019/07/20/leetCode1——两数之和/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://finding.kim/2019/07/20/leetCode1——两数之和/&text=leetCode1——两数之和"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://finding.kim/2019/07/20/leetCode1——两数之和/&title=leetCode1——两数之和"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://finding.kim/2019/07/20/leetCode1——两数之和/&is_video=false&description=leetCode1——两数之和"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=leetCode1——两数之和&body=Check out this article: http://finding.kim/2019/07/20/leetCode1——两数之和/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://finding.kim/2019/07/20/leetCode1——两数之和/&title=leetCode1——两数之和"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://finding.kim/2019/07/20/leetCode1——两数之和/&title=leetCode1——两数之和"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://finding.kim/2019/07/20/leetCode1——两数之和/&title=leetCode1——两数之和"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://finding.kim/2019/07/20/leetCode1——两数之和/&title=leetCode1——两数之和"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://finding.kim/2019/07/20/leetCode1——两数之和/&name=leetCode1——两数之和&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        leetCode1——两数之和
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">troubledot'blog</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2019-07-20T05:58:27.000Z" itemprop="datePublished">2019-07-20</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/easy/">easy</a>, <a class="tag-link" href="/tags/leetCode/">leetCode</a>, <a class="tag-link" href="/tags/算法/">算法</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>我打算在后面持续更新下leetCode，希望能再坚持成功一件事情，这是第一题，直接开始。</p>
+<p>题目：给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那两个整数，并返回他们的数组下标。</p>
+<p>你可以假设每种输入只会对应一个答案。但是，你不能重复利用这个数组中同样的元素。</p>
+<p>示例:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">给定 nums = [<span class="number">2</span>, <span class="number">7</span>, <span class="number">11</span>, <span class="number">15</span>], target = <span class="number">9</span></span><br><span class="line"></span><br><span class="line">因为 nums[<span class="number">0</span>] + nums[<span class="number">1</span>] = <span class="number">2</span> + <span class="number">7</span> = <span class="number">9</span></span><br><span class="line">所以返回 [<span class="number">0</span>, <span class="number">1</span>]</span><br></pre></td></tr></table></figure>
+<p>一个毫无算法基础的非科班程序员，看到这个题目直接硬刚，两层循环。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * @param &#123;number[]&#125; nums</span></span><br><span class="line"><span class="comment"> * @param &#123;number&#125; target</span></span><br><span class="line"><span class="comment"> * @return &#123;number[]&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> twoSum = <span class="function"><span class="keyword">function</span>(<span class="params">nums, target</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">for</span> (i <span class="keyword">in</span> nums)&#123;</span><br><span class="line">    <span class="keyword">for</span> (j <span class="keyword">in</span> nums)&#123;</span><br><span class="line">      <span class="keyword">if</span> (i + j == target &amp;&amp; i !== j)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Array</span>(i, j)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>可能一开始刷leetCode会有点吃力，会有考虑不周的地方，但是也还算有思路，比如我第一次做的时候就没想到要排除i和j相等的情况。</p>
+<p>最后提交的时候执行用时：5808 ms，好像超过了5%的人，就是菜鸟的意思。</p>
+<p>我后面试过递归，也没能行，想不明白了，那就翻答案吧，然后就了解到了一个新的概念——哈希表。</p>
+<p>一个完全陌生的概念，加上官方答案里面是java代码，而且这道题貌似考察的就是哈希表，我上网查了下关于哈希表的概念，大多数都比较晦涩，直到看到了<a href="https://www.zhihu.com/question/330112288/answer/744362539" target="_blank" rel="noopener">这篇文章</a>，文中举的停车场的例子真的生动至极，让人茅塞顿开。</p>
+<p>具体什么是哈希表呢？如果我能把这个东西说清楚那么应该就算是理解了吧。</p>
+<p>哈希表也叫散列表，在维基百科里面是这么解释的：</p>
+<blockquote>
+<p>散列表（Hash table，也叫哈希表），是根据键（Key）而直接访问在内存存储位置的数据结构。也就是说，它通过计算一个关于键值的函数，将所需查询的数据映射到表中一个位置来访问记录，这加快了查找速度。这个映射函数称做散列函数，存放记录的数组称做散列表。</p>
+</blockquote>
+<p>这里有几个关键字：<strong>键（key）</strong>，<strong>散列函数</strong>。</p>
+<p>想象一下这样一种场景，有几个数字，2312、1333、1236、2580、9362、9457。</p>
+<p>我们需要把这几个数字存起来，并且我需要某一个数字的时候能快速找到，有什么好的办法？</p>
+<p>第一种办法，直接存数组里面：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = [<span class="number">2312</span>,<span class="number">1333</span>,<span class="number">1236</span>,<span class="number">2580</span>,<span class="number">9362</span>,<span class="number">9457</span>]</span><br></pre></td></tr></table></figure>
+<p>如果我需要9362，那么从a[0]开始一个个往后找，找到9362为止，这里会涉及到一个复杂度的问题，不细究了，总之我们能想象到这显然不是一个好办法，如果数字足够多，而你要找的又在最后那就很慢了。再快一点的找法，把a从小到大排序，从中间开始找，9362大于中间的数，那么我们直接往后找，这样能够快一点，但是显然还是不够快。</p>
+<p>第二种办法，像下面这样一个表我们把这几个数按照一定的规则插入表中，并假定这个规则为关键字除以10的余数作为地址。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">地址</th>
+<th style="text-align:center">空表</th>
+<th style="text-align:center">插入2312</th>
+<th style="text-align:center">插入1333</th>
+<th style="text-align:center">插入1236</th>
+<th style="text-align:center">插入2580</th>
+<th style="text-align:center">插入9362</th>
+<th style="text-align:center">插入9457</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">2580</td>
+<td style="text-align:center">2580</td>
+<td style="text-align:center">2580</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">2312</td>
+<td style="text-align:center">2312</td>
+<td style="text-align:center">2312</td>
+<td style="text-align:center">2312</td>
+<td style="text-align:center">2312</td>
+<td style="text-align:center">2312</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">1333</td>
+<td style="text-align:center">1333</td>
+<td style="text-align:center">1333</td>
+<td style="text-align:center">1333</td>
+<td style="text-align:center">1333</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"><strong>9362</strong></td>
+<td style="text-align:center"><strong>9362</strong></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center">5</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center">6</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">1236</td>
+<td style="text-align:center">1236</td>
+<td style="text-align:center">1236</td>
+<td style="text-align:center">1236</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center">7</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">9457</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center">8</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center">9</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>插入数据的过程中，2312和9362除以10取余都是2，所以在插入9362的时候，在2号位置上已经有了2312，这时候就出现了哈希中的<strong>冲突</strong>，解决冲突的办法很多，我们用了最简单的往后顺延存到3号位置上，发现3号位置也被占用了，那就继续往后存到4号上了。</p>
+<p>我们来看下这样存入数据以后查的时候真的会很快吗？<br>比如说我要查2312，用根据哈希函数除以10取余为2，我们知道应该去2号位置找，直接hash[2],就是2312。<br>再查找一个9362，同样我们根据哈希函数去2号位置找，发现不是9362，确定哈希函数没有问题的话那么知道这肯定是冲突了，这里我们知道冲突解决的规则是往后顺延，直接找3号位置，发现也不是继续顺延hash[4]是9362了。<br>发现这样找起来的确比较省事，如果没有发生冲突的话，一次就找到了。关于冲突的问题又会衍生出来好多内容，以后如果需要再细究。</p>
+<p>这里我们可以看到最后的结果好像也是一个数组，与其说数组其实更像是一个对象，毕竟数组给我们的印象大都是连续的。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">obj = &#123;</span><br><span class="line">  <span class="string">'0'</span>: <span class="string">'2580'</span>,</span><br><span class="line">  <span class="string">'1'</span>: <span class="string">''</span>,</span><br><span class="line">  <span class="string">'2'</span>: <span class="string">'2312'</span>,</span><br><span class="line">  <span class="string">'3'</span>: <span class="string">'1333'</span>,</span><br><span class="line">  <span class="string">'4'</span>: <span class="string">'9362'</span>,</span><br><span class="line">  <span class="string">'5'</span>: <span class="string">''</span>,</span><br><span class="line">  <span class="string">'6'</span>: <span class="string">'1236'</span>,</span><br><span class="line">  <span class="string">'7'</span>: <span class="string">'9457'</span>,</span><br><span class="line">  <span class="string">'8'</span>: <span class="string">''</span>,</span><br><span class="line">  <span class="string">'9'</span>: <span class="string">''</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>其实，js中的对象底层就是哈希表。</p>
+</blockquote>
+<p>不难看出来所谓“哈希表”，其实就是一个对象，而这个对象的键值（key）长得跟数组的索引（index）一样。</p>
+<p>大致了解了哈希，我们再看这个题目，大致思路：</p>
+<ol>
+<li>把这些数字(num)挨个往哈希表中插入；</li>
+<li>插入的时候判断一下目标数字(target - num)是否存在于哈希表中，存在就返回索引不存在就插入哈希表中；</li>
+</ol>
+<p>代码如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * @param &#123;number[]&#125; nums</span></span><br><span class="line"><span class="comment"> * @param &#123;number&#125; target</span></span><br><span class="line"><span class="comment"> * @return &#123;number[]&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> twoSum = <span class="function"><span class="keyword">function</span>(<span class="params">nums, target</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> hash = &#123;&#125;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; nums.length; i++)&#123;</span><br><span class="line">    <span class="keyword">if</span>( target-nums[i] <span class="keyword">in</span> hash)&#123;</span><br><span class="line">      <span class="keyword">return</span> [hash[target-nums[i]], i]</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      hash[nums[i]] = i</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>我们在插入哈希表的时候用 <em>hash[nums[i]] = i</em>，这样得到的哈希表中值是数组索引，而键是数组中的值。<br>拿测试的例子就是这样子：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 数组</span></span><br><span class="line">nums = [<span class="number">2</span>, <span class="number">7</span>, <span class="number">11</span>, <span class="number">15</span>]</span><br><span class="line"><span class="comment">// 哈希</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">'2'</span>: <span class="string">'0'</span>,</span><br><span class="line">  <span class="string">'7'</span>: <span class="string">'1'</span>,</span><br><span class="line">  <span class="string">'11'</span>: <span class="string">'2'</span>,</span><br><span class="line">  <span class="string">'15'</span>: <span class="string">'3'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样的好处就在于我们可以用in运算符去判断目标值是否在哈希表中：<em>target-nums[i] in hash</em></p>
+<p>最后也能以目标值作为键来取到索引 <em>hash[target-nums[i]]</em></p>
+<p>这下好了，超过了99.57%。</p>
+<p><img src="http://res.troubledot.cn/twosum.png" alt="99.57%"></p>
+<p>再去看看别人的写法，真的是大开眼界，强烈建议去刷国外的leetcode，那上面讨论更多，有意思的答案更多。</p>
+<p>比如可以把里面的判断写一个方法用some来执行：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * @param &#123;number[]&#125; nums</span></span><br><span class="line"><span class="comment"> * @param &#123;number&#125; target</span></span><br><span class="line"><span class="comment"> * @return &#123;number[]&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> twoSum = <span class="function"><span class="keyword">function</span>(<span class="params">nums, target</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> hash = &#123;&#125;</span><br><span class="line">  <span class="keyword">let</span> res = []</span><br><span class="line">  nums.some(<span class="function">(<span class="params">num, index</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">const</span> k = target - num</span><br><span class="line">    <span class="keyword">if</span>(k <span class="keyword">in</span> hash)&#123;</span><br><span class="line">      res = [hash[k], index]</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      hash[num] = index</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">    <span class="keyword">return</span> res</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>这里注意最后需要返回值，我自己照着写的时候把返回值写在some里面的方法中，最后整个函数没有返回值，一直是undefined。</p>
+<p>还有好多有意思的代码就不意义罗列了，看别人的代码，真的长姿势！！</p>
+<p>第一道leetCode，写的有点啰嗦，后面慢慢简略点。</p>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Blog</a></li>
+         
+          <li><a href="https://github.com/Troubledot">Projects</a></li>
+         
+          <li><a href="/URL">LINK_NAME</a></li>
+         
+          <li><a href="/Search/">Search</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://finding.kim/2019/07/20/leetCode1——两数之和/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://finding.kim/2019/07/20/leetCode1——两数之和/&text=leetCode1——两数之和"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://finding.kim/2019/07/20/leetCode1——两数之和/&title=leetCode1——两数之和"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://finding.kim/2019/07/20/leetCode1——两数之和/&is_video=false&description=leetCode1——两数之和"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=leetCode1——两数之和&body=Check out this article: http://finding.kim/2019/07/20/leetCode1——两数之和/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://finding.kim/2019/07/20/leetCode1——两数之和/&title=leetCode1——两数之和"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://finding.kim/2019/07/20/leetCode1——两数之和/&title=leetCode1——两数之和"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://finding.kim/2019/07/20/leetCode1——两数之和/&title=leetCode1——两数之和"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://finding.kim/2019/07/20/leetCode1——两数之和/&title=leetCode1——两数之和"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://finding.kim/2019/07/20/leetCode1——两数之和/&name=leetCode1——两数之和&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 troubledot
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Blog</a></li>
+         
+          <li><a href="https://github.com/Troubledot">Projects</a></li>
+         
+          <li><a href="/URL">LINK_NAME</a></li>
+         
+          <li><a href="/Search/">Search</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/fontawesome-all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-86660611-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Baidu Analytics -->
+
+    <script type="text/javascript">
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?2e6da3c375c8a87f5b664cea6d4cb29c";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+<!-- Disqus Comments -->
+
+
