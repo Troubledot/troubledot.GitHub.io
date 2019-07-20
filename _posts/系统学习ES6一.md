@@ -1,7 +1,12 @@
 ---
 title: 系统学习ES6（let和const命令）
 date: 2018-12-03 11:31:02
-tags:
+categories: 
+- 技术
+- js
+- es6
+tags: 
+- es6
 ---
 ### 1、let命令
 

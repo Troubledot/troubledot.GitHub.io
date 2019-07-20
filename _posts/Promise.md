@@ -1,7 +1,13 @@
 ---
 title: Promise
 date: 2019-07-01 14:44:55
-tags: es6 js
+categories:
+- 技术
+- js
+- es6
+tags: 
+- es6 
+- js
 ---
 Promise作为es6中出现的新概念，改变了js的异步编程，现代前端的大多数异步请求都是通过Promise实现的，fetch这个web api也是基于Promise实现的，这里不得简述一下之前统治JS异步编程的回调函数，回调函数有什么缺点，Promise又是怎么改善这些缺点
 

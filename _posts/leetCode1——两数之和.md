@@ -1,7 +1,13 @@
 ---
 title: leetCode1——两数之和
 date: 2019-07-20 13:58:27
-tags: leetCode easy 
+categories:
+- 技术
+- leetCode
+tags: 
+- leetCode 
+- easy 
+- 算法
 ---
 
 我打算在后面持续更新下leetCode，希望能再坚持成功一件事情，这是第一题，直接开始。
