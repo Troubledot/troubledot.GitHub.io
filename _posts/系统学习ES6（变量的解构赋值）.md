@@ -1,6 +1,10 @@
 ---
 title: 系统学习ES6（变量的解构赋值）
 date: 2018-12-12 11:24:45
+categories: 
+- 技术
+- js
+- es6
 tags: 
 - es6
 ---
