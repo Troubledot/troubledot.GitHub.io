@@ -76,3 +76,21 @@ var symbol = Symbol('mysymbol')
 console.log(toString(symbol))  //'Symbol('mysymbol')'
 console.log(symbol.toString()) // 'Symbol(mysymbol)'
 ```
+
+#### 9、Symbol可以作为对象的属性值，保证属性不会冲突
+
+```js
+var sys = Symbol()
+// 第一种写法
+var obj = {}
+obj[sys] = 'Troubledot'
+// 第二种写法
+obj{
+  [sys]: 'Troubledot'
+}
+// 第三种写法
+var obj = {}
+Object.defineProperty(a, symbol ,{value: 'Troubledot'});
+```
+
+#### 10、 
