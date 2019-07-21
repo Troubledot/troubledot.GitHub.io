@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="题目 给出一个 32 位的有符号整数，你需要将这个整数中每位上的数字进行反转。 示例 1: 12输入: 123输出: 321  示例 2: 123输入: -123输出: -321示例 3: 输入: 120输出: 21注意: 假设我们的环境只能存储得下 32 位的有符号整数，则其数值范围为 [−231,  231 − 1]。请根据这个假设，如果反转后整数溢出那么就返回 0。 反转首先想到的是数组的r">
+<meta name="keywords" content="leetCode,easy,算法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="leetCode2——整数反转">
+<meta property="og:url" content="http://finding.kim/2019/07/21/leetCode2——整数反转/index.html">
+<meta property="og:site_name" content="troubledot&#39;blog">
+<meta property="og:description" content="题目 给出一个 32 位的有符号整数，你需要将这个整数中每位上的数字进行反转。 示例 1: 12输入: 123输出: 321  示例 2: 123输入: -123输出: -321示例 3: 输入: 120输出: 21注意: 假设我们的环境只能存储得下 32 位的有符号整数，则其数值范围为 [−231,  231 − 1]。请根据这个假设，如果反转后整数溢出那么就返回 0。 反转首先想到的是数组的r">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://res.troubledot.cn/reverse.png">
+<meta property="og:image" content="http://res.troubledot.cn/reverse1.png">
+<meta property="og:image" content="http://res.troubledot.cn/reverse2.png">
+<meta property="og:updated_time" content="2019-07-21T06:48:56.810Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="leetCode2——整数反转">
+<meta name="twitter:description" content="题目 给出一个 32 位的有符号整数，你需要将这个整数中每位上的数字进行反转。 示例 1: 12输入: 123输出: 321  示例 2: 123输入: -123输出: -321示例 3: 输入: 120输出: 21注意: 假设我们的环境只能存储得下 32 位的有符号整数，则其数值范围为 [−231,  231 − 1]。请根据这个假设，如果反转后整数溢出那么就返回 0。 反转首先想到的是数组的r">
+<meta name="twitter:image" content="http://res.troubledot.cn/reverse.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/logo.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/logo.png">
+          
+        
+    
+    <!-- title -->
+    <title>leetCode2——整数反转</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Blog</a></li>
+         
+          <li><a href="https://github.com/Troubledot">Projects</a></li>
+         
+          <li><a href="/URL">LINK_NAME</a></li>
+         
+          <li><a href="/Search/">Search</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/2019/07/20/leetCode1——两数之和/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://finding.kim/2019/07/21/leetCode2——整数反转/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://finding.kim/2019/07/21/leetCode2——整数反转/&text=leetCode2——整数反转"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://finding.kim/2019/07/21/leetCode2——整数反转/&title=leetCode2——整数反转"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://finding.kim/2019/07/21/leetCode2——整数反转/&is_video=false&description=leetCode2——整数反转"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=leetCode2——整数反转&body=Check out this article: http://finding.kim/2019/07/21/leetCode2——整数反转/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://finding.kim/2019/07/21/leetCode2——整数反转/&title=leetCode2——整数反转"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://finding.kim/2019/07/21/leetCode2——整数反转/&title=leetCode2——整数反转"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://finding.kim/2019/07/21/leetCode2——整数反转/&title=leetCode2——整数反转"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://finding.kim/2019/07/21/leetCode2——整数反转/&title=leetCode2——整数反转"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://finding.kim/2019/07/21/leetCode2——整数反转/&name=leetCode2——整数反转&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        leetCode2——整数反转
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">troubledot'blog</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2019-07-21T04:32:50.000Z" itemprop="datePublished">2019-07-21</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/easy/">easy</a>, <a class="tag-link" href="/tags/leetCode/">leetCode</a>, <a class="tag-link" href="/tags/算法/">算法</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>题目</p>
+<p>给出一个 32 位的有符号整数，你需要将这个整数中每位上的数字进行反转。</p>
+<p>示例 1:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: <span class="number">123</span></span><br><span class="line">输出: <span class="number">321</span></span><br></pre></td></tr></table></figure>
+<p> 示例 2:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: <span class="number">-123</span></span><br><span class="line">输出: <span class="number">-321</span></span><br><span class="line">示例 <span class="number">3</span>:</span><br></pre></td></tr></table></figure>
+<p>输入: 120<br>输出: 21<br>注意:</p>
+<p>假设我们的环境只能存储得下 32 位的有符号整数，则其数值范围为 [−231,  231 − 1]。请根据这个假设，如果反转后整数溢出那么就返回 0。</p>
+<p>反转首先想到的是数组的reverse方法，数字转字符串再转成数组，reverse以后再转回来，当然最后return的时候需要判断下是否溢出了。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * @param &#123;number&#125; x</span></span><br><span class="line"><span class="comment"> * @return &#123;number&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> reverse = <span class="function"><span class="keyword">function</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> res</span><br><span class="line">  <span class="keyword">let</span> y = <span class="built_in">Math</span>.abs(x)</span><br><span class="line">  <span class="keyword">const</span> str = <span class="built_in">String</span>(y)</span><br><span class="line">  <span class="keyword">const</span> arr = str.split(<span class="string">''</span>)</span><br><span class="line">  <span class="keyword">const</span> newarr = arr.reverse()</span><br><span class="line">  <span class="keyword">let</span> val = newarr.join(<span class="string">''</span>)*<span class="number">1</span></span><br><span class="line">  <span class="keyword">if</span>(val &lt; <span class="number">2</span>**<span class="number">31</span>)&#123;</span><br><span class="line">    res = x&gt;<span class="number">0</span>?val:-val</span><br><span class="line">  &#125; <span class="keyword">else</span>&#123;</span><br><span class="line">    res = <span class="number">0</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> res</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>下面是提交结果：</p>
+<p><img src="http://res.troubledot.cn/reverse.png" alt="数组reverse提交结果"></p>
+<p>通过了，但是我感觉这道题考察的显然不是数组的reverse方法，再想想别的办法。</p>
+<p>如果不使用reverse的话，我们其实可以把字符串从后往前遍历push进一个数组再转回来。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * @param &#123;number&#125; x</span></span><br><span class="line"><span class="comment"> * @return &#123;number&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> reverse = <span class="function"><span class="keyword">function</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> y = <span class="built_in">Math</span>.abs(x)</span><br><span class="line">  <span class="keyword">const</span> str = <span class="built_in">String</span>(y)</span><br><span class="line">  <span class="keyword">let</span> arr = []</span><br><span class="line">  <span class="keyword">let</span> res</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> i = str.length - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--)&#123;</span><br><span class="line">    arr.push(str[i])</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">const</span> val = arr.join(<span class="string">''</span>)*<span class="number">1</span></span><br><span class="line">  <span class="keyword">if</span>(val &lt; <span class="number">2</span>**<span class="number">31</span>)&#123;</span><br><span class="line">    res = x &gt; <span class="number">0</span> ? val : -val</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    res = <span class="number">0</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> res</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>看下提交结果:<br><img src="http://res.troubledot.cn/reverse1.png" alt="字符串倒序遍历提交结果"><br>内存没咋变，但是执行速度提高了点，超过92.47%了都。<br>这是我现有知识能想到的两种方法了，接下来我开始看评论里的大神们怎么写的。<br>看了才知道，原来整数的倒序是有算法的，而这道题真正要考察的也正是那个倒序的算法。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * @param &#123;number&#125; x</span></span><br><span class="line"><span class="comment"> * @return &#123;number&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> reverse = <span class="function"><span class="keyword">function</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> y = <span class="built_in">Math</span>.abs(x)</span><br><span class="line">  <span class="keyword">let</span> result = <span class="number">0</span></span><br><span class="line">  <span class="keyword">let</span> res</span><br><span class="line">  <span class="keyword">while</span> (y) &#123;</span><br><span class="line">    <span class="keyword">const</span> digit = y%<span class="number">10</span></span><br><span class="line">    y = <span class="built_in">Math</span>.floor(y/<span class="number">10</span>)</span><br><span class="line">    result = result * <span class="number">10</span> + digit</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (result &lt; <span class="number">2</span>**<span class="number">31</span>)&#123;</span><br><span class="line">    res = x &gt; <span class="number">0</span> ? result : -result</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    res = <span class="number">0</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> res</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>果然，看下结果吧<br><img src="http://res.troubledot.cn/reverse2.png" alt="倒序算法"></p>
+<p>倒序算法，假设要需要倒序的数为想x：</p>
+<ol>
+<li>把x除以10取余，也就是拿到其个位数digit，1234的话digit为4；</li>
+<li>将x除以10取整，也就是拿到除个位数外的其他位数赋值给他自身，此时1234变成了123；</li>
+<li>结果从0开始加，<em>result = result </em> 10 + digit*也就是 0x10+4 = 4；</li>
+<li>x大于0就继续执行上面的操作，digit = 123%10 = 3，x再除以10取整为12，此时的result为 4x10+3=43；x为12仍然需要继续执行，12%10 = 2，12/10取整为1，result = 43x10+2 = 432；此时x=1还需要执行，x%10商0余1,1/10取整结果为0，result = 432x10+1 = 4321；x=0了，while执行结束了。</li>
+</ol>
+<p>以上 leetcode 整数反转， 共勉！</p>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Blog</a></li>
+         
+          <li><a href="https://github.com/Troubledot">Projects</a></li>
+         
+          <li><a href="/URL">LINK_NAME</a></li>
+         
+          <li><a href="/Search/">Search</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://finding.kim/2019/07/21/leetCode2——整数反转/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://finding.kim/2019/07/21/leetCode2——整数反转/&text=leetCode2——整数反转"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://finding.kim/2019/07/21/leetCode2——整数反转/&title=leetCode2——整数反转"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://finding.kim/2019/07/21/leetCode2——整数反转/&is_video=false&description=leetCode2——整数反转"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=leetCode2——整数反转&body=Check out this article: http://finding.kim/2019/07/21/leetCode2——整数反转/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://finding.kim/2019/07/21/leetCode2——整数反转/&title=leetCode2——整数反转"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://finding.kim/2019/07/21/leetCode2——整数反转/&title=leetCode2——整数反转"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://finding.kim/2019/07/21/leetCode2——整数反转/&title=leetCode2——整数反转"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://finding.kim/2019/07/21/leetCode2——整数反转/&title=leetCode2——整数反转"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://finding.kim/2019/07/21/leetCode2——整数反转/&name=leetCode2——整数反转&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 troubledot
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Blog</a></li>
+         
+          <li><a href="https://github.com/Troubledot">Projects</a></li>
+         
+          <li><a href="/URL">LINK_NAME</a></li>
+         
+          <li><a href="/Search/">Search</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/fontawesome-all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-86660611-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Baidu Analytics -->
+
+    <script type="text/javascript">
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?2e6da3c375c8a87f5b664cea6d4cb29c";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+<!-- Disqus Comments -->
+
+
