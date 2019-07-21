@@ -39,3 +39,40 @@ var s2 = Symbol('s2')
 console.log(s1))  // Symbol(s1)
 console.log(s2)). // Symbol(s2)
 ```
+
+#### 5、Symbol的参数如果是一个对象，就会调用该对象的toString方法，将其转换成字符串，然后生成Symbol值。
+
+```js
+const obj = {
+  toString: function(){
+    return 'abc'
+  }
+}
+const s1 = Symbol(obj)
+console.log(s1)  //'abc'
+```
+
+#### 6、Symbol的参数只是对当前值的一个描述，并不代表Symbol的值，也就是说就算参数相同，这两个Symbol也是不相等的
+
+```js
+// 没有参数的情况
+Symbol() == Symbol() // false
+// 有参数的情况
+Symbol('123') == Symbol('123')  //false
+```
+
+#### 7、Symbol不能与其他类型的值进行运算否则会报错
+
+```js
+var mysymbol = Symbol('123')
+console.log('my symbol is' + mysymbol) //TypeError: Cannot convert a Symbol value to a string
+console.log(1 + mysymbol) //Cannot convert a Symbol value to a number
+```
+
+#### 8、Symbol可以显式的转换为字符串
+
+```js
+var symbol = Symbol('mysymbol')
+console.log(toString(symbol))  //'Symbol('mysymbol')'
+console.log(symbol.toString()) // 'Symbol(mysymbol)'
+```
