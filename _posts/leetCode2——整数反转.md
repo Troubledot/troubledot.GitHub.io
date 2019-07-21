@@ -90,7 +90,9 @@ var reverse = function(x) {
 ```
 
 看下提交结果:
+
 ![字符串倒序遍历提交结果](http://res.troubledot.cn/reverse1.png)
+
 内存没咋变，但是执行速度提高了点，超过92.47%了都。
 这是我现有知识能想到的两种方法了，接下来我开始看评论里的大神们怎么写的。
 看了才知道，原来整数的倒序是有算法的，而这道题真正要考察的也正是那个倒序的算法。
@@ -119,6 +121,7 @@ var reverse = function(x) {
 ```
 
 果然，看下结果吧
+
 ![倒序算法](http://res.troubledot.cn/reverse2.png)
 
 倒序算法，假设要需要倒序的数为想x：
