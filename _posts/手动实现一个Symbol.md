@@ -40,7 +40,7 @@ console.log(s1))  // Symbol(s1)
 console.log(s2)). // Symbol(s2)
 ```
 
-#### 5、Symbol的参数如果是一个对象，就会调用该对象的toString方法，将其转换成字符串，然后生成Symbol值。
+#### 5、Symbol的参数如果是一个对象，就会调用该对象的toString方法，将其转换成字符串，然后生成Symbol值
 
 ```js
 const obj = {
@@ -93,4 +93,24 @@ var obj = {}
 Object.defineProperty(a, symbol ,{value: 'Troubledot'});
 ```
 
-#### 10、 
+#### 10、Symbol作为属性名，该属性不会出现在for...in，for...of中，也不会被Object.keys()、Object.getOwnPropertyNamens、JSON.stringify()返回。但是也不是私有属性，有一个Object.getOwnpropertySymbols方法，可以获取指定对象的所有Symbol属性名
+
+```js
+var obj = {}
+var a = Symbol('a')
+var b = Symbol('b')
+obj[a] = 'Hello'
+obj[b] = 'World'
+
+var objectSymbol = Object.getOwnPropertySymbols(obj)
+console.log(objectSymbol) //[Symbol('a'), Symbol('b')]
+
+```
+
+### 11、如果我们希望使用同一个Symbol值，可以用for
+
+```js
+var a = Symbol.for('foo')
+var b = Symbol.for('foo')
+a == b // true
+```
