@@ -143,26 +143,218 @@ console.log(s2.keyfor())  //undefined
 4. 如果报错，就返回
 5. 返回一个新的唯一的 Symbol 值，它的内部属性 [[Description]] 值为 descString
 
-按照Symbol的特性一条条往下写。  、·   
+按照Symbol的特性一条条往下写。
+
+1、使用typeof的时候返回Symbol，无法修改typeof的结果。放弃！
+
+2、使用new关键字的时候报错 可以实现
+
+  ```js
+  (function(){
+  var root = this
+  var Mysymbol = function Symbol(description){
+    if (this instanceof Mysymbol) throw new TypeError('Symbol is not a constructor')
+    return symbol
+  }
+  root.Mysymbol = Mysymbol
+  })()
+  ```
+
+3、instanceof结果为false，不是由new生成的，所以这条不用专门去实现。
+
+4、Symbol接受一个字符串作为参数来表示对其的描述，用以在打印或者转为字符串的时候便与区分，因为我们在模拟的时候返回的是一个对象，实现不了。
+
+5、如果Symbol的参数是一个对象，调用toString方法转换成字符串在返回Symbol，如果参数是undefined直接返回undefined，否则对参数执行toString方法再返回，用一个三元表达式就好
+
+```js
+  var descString = description === undefined ? undefined : description.toString()
+```
+  
+6、因为我们模拟的symbol是一个对象，每次都要创建一个新对象，引用不同所以即使参数相同返回值也不同
+
+7、Symbol不能参与运算，否则会报错。
+
+  这里我们以‘+’运算为例，在做‘+’运算的时候，先执行了valueOf方法进行了隐式类型转换再进行运算的，所以我们可以在对Symbol执行valueOf()的时候抛出个错误就行。
+  
+  ```js
+  var symbol = Object.create({
+    valueOf:function(){
+      throw new Error('Cannot convert a Symbol value')
+    }
+  })
+  ```
+
+  但是这样的结果就是symbol无法使用valueOf方法，使用就会报错，看下实际上不是这样的
+
+  ![symbolvalueof](http://res.troubledot.cn/symbolvalueof.png)
+  
+  我们能看到symbol执行valueOf方法的时候并没有报错，而是返回了这个symbol值，也就是它本身。所以我们为了使其不能参与运算就改变了它的valueOf方法显然是不合理的，能否参与运算和它本身的valueOf方法这两者显然后者要更加重要，所以我们可以舍弃它不能参与运算的特性而来实现它的valueOf方法。
+  
+  ```js
+  var symbol = Object.create({
+    valueOf: function(){
+      return this
+    }
+  })
+  ```
+
+8、我们模拟的symbol最后返回的是一个对象，对象显式调用toString，我们在控制台里打印下发现长这样[object,object]，显然不是我们想要的结果，所以我们可以给该对象绑定一个toString方法，返回它的__Description__就成。
+
+```js
+var symbol = Object.create({
+  toString: function(){
+    return this.__Description__
+  }
+})
+```
+
+9、symbol作为对象的属性可以保证不会出现重名属性，要作为对象的属性，需要先调用toString方法进行隐式类型转换，而在第8条中我们给它绑定的toString方法返回的是参数，这样的话，只要传入的参数相同，那么作为属性名的时候就不能避免重名。也就是说这一条和第8条是冲突的，我们也需要做取舍，显然作为对象属性不重名这几乎是symbol诞生的初衷，肯定是要比调用toString返回字符串重要的。我们可以舍弃第8条来实现这一条，保证唯一性，我们创建一个生成唯一标识的方法generateName。
+
+```js
+  //每次加入一个flag值保证每次拿到的值不同
+ var generateName = function(descString){
+    var flag = 0
+    return function(){
+      flag++
+      return 'troubledot' + descString + '_' + flag
+    }
+  }
+```
+
+然后改造toString方法，保证在symbol在类型转换以后返回的字符串每次都不相同。当然此时已经无法满足第8条了。
+
+```js
+  Object.defineProperties(symbol,{
+    '__Description__': {
+      value: descString,
+      writable: false,
+      enumerable: false,
+      configurable: false
+    },
+    '__Name__': {
+      value: generateName(descString),
+      writable: false,
+      enumerable: false,
+      configurable: false
+    },
+  })
+  var symbol = Object.create({
+    toString: function(){
+      return this.__Name__
+    }
+  })
+```
+
+10、Symbol 作为属性名，该属性不会出现在 for...in、for...of 循环中，也不会被 Object.keys()、Object.getOwnPropertyNames()、JSON.stringify() 返回。但是，它也不是私有属性，有一个 Object.getOwnPropertySymbols 方法，可以获取指定对象的所有 Symbol 属性名。 实现不了
+
+11、使用for可以访问相同的symbol，整数求和里面的哈希表，把创建的symbol都存在一个对象里面，for的时候去搜索，有的话直接返回。
+
+```js
+var symbolMap = {}
+Object.defineProperties(Mysymbol, {
+  for:{
+    value: function(description){
+      var descString = description == undefined ? undefined : String(description)
+      return symbolMap[descString] ? symbolMap[descString] : symbolMap[descString] = Mysymbol(descString)
+    },
+    writable: true,
+    enumerable: false,
+    configurable: true
+  }
+})
+
+```
+
+12、keyFor返回一个已经登记的symbol类型的key，遍历symbolMap，返回key即可
+
+```js
+var symbolMap = {}
+Object.defineProperties(Mysymbol,{
+  keyFor:{
+    value: {
+      function(symbol){
+        for (var key in symbolMap){
+          if (symbolMap[key] === symbol)
+          {
+            return key
+          }
+        }
+      }
+    },
+    writable: true,
+    enumerable: false,
+    configurable: true
+  }
+})
+```
+
+下面看下完整实例
 
 ```js
 (function(){
   var root = this
-  var Mysymbol = function Symbol(description){
-    // 1.使用typeof的时候返回Symbol，无法修改typeof的结果。放弃
-    // 2.使用new关键字的时候报错 可以实现
-    if (Mysymbol instanceof Mysymbol) throw new TypeError('Symbol is not a constructor')
-    // 3.instanceof结果为false，不是由new生成的，所以这条不用专门去实现
-    // 4、Symbol接受一个字符串作为参数来表示对其的描述，用以在打印或者转为字符串的时候便与区分，因为我们在模拟的时候返回的是一个对象，实现不了。
-    //5、如果Symbol的参数是一个对象，调用toString方法转换成字符串在返回Symbol
-    var descString = description === undefined ? undefined : description.toString()
-    var symbol = Object.create(null)
-    Object.defineProperties(symbol,{
-      '__Description__': {
-        
+  var generateName = (function(){
+    var flag = 0
+    return function(name){
+      flag++
+      return 'troubledot'+ name +'_'+ flag
+    }
+  })()
+  var Generatesymbol = function Symbol(description){
+    var descString = description == undefined ? undefined : String(description)
+    if (this instanceof Generatesymbol) {
+      throw new typeError('Symbol is not a constructor')
+    }
+    var symbol = Object.create({
+      toString : function(){
+        return this.__Name__
+      },
+      valueOf: function(){
+        return this
       }
     })
-    
+    Object.defineProperties(symbol, {
+      __Description__:{
+        value: descString,
+        writable: false,
+        enumerable: false,
+        configurable: false
+      },
+      __Name__:{
+        value: generateName(descString),
+        writable: false,
+        enumerable: false,
+        configurable: false
+      }
+    })
+    return symbol
   }
+  var symbolMap = {}
+    Object.defineProperties(Generatesymbol, {
+      'for': {
+        value: function(description){
+          var descString = description == undefined ? undefined : String(description)
+          return symbolMap[descString] ? symbolMap[descString] : symbolMap[descString] = Generatesymbol(description)
+        },
+        writable: true,
+        enumerable: false,
+        configurable: true
+      },
+      'keyFor': {
+        value: function(symbol){
+          for (var key in symbolMap) {
+            if (symbolMap[key] === symbol){
+              return key
+            }
+          }
+        },
+        writable: true,
+        enumerable: false,
+        configurable: true
+      }
+    })
+  root.Generatesymbol = Generatesymbol
 })()
 ```
+
+手动实现Symbol，有好多基础的API需要学习，共勉！
