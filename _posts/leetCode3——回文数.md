@@ -154,8 +154,9 @@ var isPalindrome = function(x) {
   return res
 }
 
-
 ```
+
+![快](http://res.troubledot.cn/palindrome3.png)
 
 我感觉或许有些东西需要背下来的，包括前面的反转，和今天这个神奇的算法。
 
