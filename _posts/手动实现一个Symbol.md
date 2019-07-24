@@ -152,11 +152,11 @@ console.log(s2.keyfor())  //undefined
   ```js
   (function(){
   var root = this
-  var Mysymbol = function Symbol(description){
-    if (this instanceof Mysymbol) throw new TypeError('Symbol is not a constructor')
+  var Generatesymbol = function Symbol(description){
+    if (this instanceof Generatesymbol) throw new TypeError('Symbol is not a constructor')
     return symbol
   }
-  root.Mysymbol = Mysymbol
+  root.Generatesymbol = Generatesymbol
   })()
   ```
 
@@ -170,7 +170,7 @@ console.log(s2.keyfor())  //undefined
   var descString = description === undefined ? undefined : description.toString()
 ```
   
-6、因为我们模拟的symbol是一个对象，每次都要创建一个新对象，引用不同所以即使参数相同返回值也不同
+6、因为我们模拟的symbol是一个对象，每次都要创建一个新对象，引用不同，再加上后面会增加了一个__Name__属性，每次都不同，所以即使参数相同返回值也不同
 
 7、Symbol不能参与运算，否则会报错。
 
@@ -184,11 +184,11 @@ console.log(s2.keyfor())  //undefined
   })
   ```
 
-  但是这样的结果就是symbol无法使用valueOf方法，使用就会报错，看下实际上不是这样的
+  但是这样的结果就是symbol无法显式的调用valueOf方法，因为一调用就会报错，看下实际上不是这样的
 
   ![symbolvalueof](http://res.troubledot.cn/symbolvalueof.png)
   
-  我们能看到symbol执行valueOf方法的时候并没有报错，而是返回了这个symbol值，也就是它本身。所以我们为了使其不能参与运算就改变了它的valueOf方法显然是不合理的，能否参与运算和它本身的valueOf方法这两者显然后者要更加重要，所以我们可以舍弃它不能参与运算的特性而来实现它的valueOf方法。
+  我们能看到symbol执行valueOf方法的时候并没有报错，而是返回了这个symbol值，也就是它本身。所以我们为了使其不能参与运算就改变了它的valueOf方法显然是不合理的，在能否参与运算和它显式调用valueOf方法之中显然后者要更加重要，所以我们可以舍弃它不能参与运算的特性而来实现它的valueOf方法。
   
   ```js
   var symbol = Object.create({
@@ -198,23 +198,23 @@ console.log(s2.keyfor())  //undefined
   })
   ```
 
-8、我们模拟的symbol最后返回的是一个对象，对象显式调用toString，我们在控制台里打印下发现长这样[object,object]，显然不是我们想要的结果，所以我们可以给该对象绑定一个toString方法，返回它的__Description__就成。
+8、我们模拟的symbol最后返回的是一个对象，对象显式调用toString，我们在控制台里打印下发现长这样[object,object]，显然不是我们想要的结果，所以我们可以给该对象绑定一个toString方法，P拼出我们想要的值'Generatesymbol('+__Description__+')',返回即可。
 
 ```js
 var symbol = Object.create({
   toString: function(){
-    return this.__Description__
+    return 'Generatesymbol('+__Description__+')'
   }
 })
 ```
 
-9、symbol作为对象的属性可以保证不会出现重名属性，要作为对象的属性，需要先调用toString方法进行隐式类型转换，而在第8条中我们给它绑定的toString方法返回的是参数，这样的话，只要传入的参数相同，那么作为属性名的时候就不能避免重名。也就是说这一条和第8条是冲突的，我们也需要做取舍，显然作为对象属性不重名这几乎是symbol诞生的初衷，肯定是要比调用toString返回字符串重要的。我们可以舍弃第8条来实现这一条，保证唯一性，我们创建一个生成唯一标识的方法generateName。
+9、symbol作为对象的属性可以保证不会出现重名属性，要作为对象的属性，需要先调用toString方法进行隐式类型转换，而在第8条中我们给它绑定的toString方法返回的是字符串'Generatesymbol('+__Description__+')'，这样的话，只要传入的参数相同，那么返回值就是相等的字符串，它作为属性名的时候就不能避免重名。也就是说这一条和第8条是冲突的，我们也需要做取舍，显然作为对象属性不重名这几乎是symbol诞生的初衷，肯定是要比调用toString返回字符串重要。我们可以舍弃第8条来实现这一条，保证唯一性，创建一个生成唯一标识的方法generateName。
 
 ```js
   //每次加入一个flag值保证每次拿到的值不同
- var generateName = function(descString){
+ var generateName = function(){
     var flag = 0
-    return function(){
+    return function(descString){
       flag++
       return 'troubledot' + descString + '_' + flag
     }
@@ -245,17 +245,17 @@ var symbol = Object.create({
   })
 ```
 
-10、Symbol 作为属性名，该属性不会出现在 for...in、for...of 循环中，也不会被 Object.keys()、Object.getOwnPropertyNames()、JSON.stringify() 返回。但是，它也不是私有属性，有一个 Object.getOwnPropertySymbols 方法，可以获取指定对象的所有 Symbol 属性名。 实现不了
+10、Symbol 作为属性名，该属性不会出现在 for...in、for...of 循环中，也不会被 Object.keys()、Object.getOwnPropertyNames()、JSON.stringify() 返回。但是，它也不是私有属性，有一个 Object.getOwnPropertySymbols 方法，可以获取指定对象的所有 Symbol属性名。 这条实现不了
 
-11、使用for可以访问相同的symbol，整数求和里面的哈希表，把创建的symbol都存在一个对象里面，for的时候去搜索，有的话直接返回。
+11、使用for可以访问相同的symbol，前两天整数求和里面的哈希表，把创建的symbol都存在一个哈希表里面，for的时候去搜索，有的话直接返回，没有就存起来。
 
 ```js
 var symbolMap = {}
-Object.defineProperties(Mysymbol, {
+Object.defineProperties(Generatesymbol, {
   for:{
     value: function(description){
       var descString = description == undefined ? undefined : String(description)
-      return symbolMap[descString] ? symbolMap[descString] : symbolMap[descString] = Mysymbol(descString)
+      return symbolMap[descString] ? symbolMap[descString] : symbolMap[descString] = Generatesymbol(descString)
     },
     writable: true,
     enumerable: false,
@@ -269,7 +269,7 @@ Object.defineProperties(Mysymbol, {
 
 ```js
 var symbolMap = {}
-Object.defineProperties(Mysymbol,{
+Object.defineProperties(Generatesymbol,{
   keyFor:{
     value: {
       function(symbol){
@@ -303,7 +303,7 @@ Object.defineProperties(Mysymbol,{
   var Generatesymbol = function Symbol(description){
     var descString = description == undefined ? undefined : String(description)
     if (this instanceof Generatesymbol) {
-      throw new typeError('Symbol is not a constructor')
+      throw new TypeError('Symbol is not a constructor')
     }
     var symbol = Object.create({
       toString : function(){
